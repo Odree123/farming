@@ -1,0 +1,16 @@
+{
+  "short_name": "SautiFarm",
+  "name": "SautiFarm - Kenyan Agricultural AI Assistant",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#14532d",
+  "theme_color": "#16a34a",
+  "display": "standalone",
+  "orientation": "portrait"
+}

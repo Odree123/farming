@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="farmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#farmGrad)" />
+  <circle cx="256" cy="180" r="48" fill="url(#goldGrad)" opacity="0.9" />
+  <!-- Sprout / Wheat Stem -->
+  <path d="M256 380 V 220" stroke="#fef08a" stroke-width="20" stroke-linecap="round" />
+  <path d="M256 290 Q 200 240 180 200 Q 220 200 256 270" fill="#86efac" />
+  <path d="M256 260 Q 312 210 332 170 Q 292 170 256 240" fill="#4ade80" />
+  <path d="M256 340 Q 180 310 160 270 Q 210 270 256 320" fill="#22c55e" />
+  <path d="M256 320 Q 332 290 352 250 Q 302 250 256 300" fill="#16a34a" />
+  <!-- Audio wave indicator for Sauti -->
+  <path d="M120 256 A 160 160 0 0 1 150 170" stroke="#fef08a" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.8" />
+  <path d="M392 256 A 160 160 0 0 0 362 170" stroke="#fef08a" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.8" />
+</svg>

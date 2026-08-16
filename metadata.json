@@ -1,0 +1,11 @@
+{
+  "name": "SautiFarm - Kenyan Agricultural AI Assistant",
+  "description": "Multi-channel agricultural AI assistant for Kenyan farmers featuring voice & chat advisory in local languages, AI plant disease vision diagnosis, farm inputs marketplace with M-Pesa, and live market commodity prices.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
