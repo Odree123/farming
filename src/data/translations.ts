@@ -21,6 +21,14 @@ export interface TranslationDict {
     prices: string;
     marketplace: string;
     ussd: string;
+    more: string;
+    aboutUs: string;
+    services: string;
+    investors: string;
+    careers: string;
+    contact: string;
+    devPortal: string;
+    informationHub: string;
   };
   home: {
     heroTitle: string;
@@ -49,6 +57,8 @@ export interface TranslationDict {
     speakResponse: string;
     stopAudio: string;
     uploadImagePrompt: string;
+    modeChat: string;
+    modeDiseaseScan: string;
   };
   disease: {
     title: string;
@@ -127,6 +137,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Bei za Masoko',
       marketplace: 'Soko la Pembejeo',
       ussd: 'Piga USSD',
+      more: 'Zaidi',
+      aboutUs: 'Kuhusu Sisi',
+      services: 'Huduma',
+      investors: 'Wawekezaji',
+      careers: 'Kazi',
+      contact: 'Wasiliana',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Kilimo Bora, Mavuno Mengi, Faida Zaidi',
@@ -160,6 +178,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soma kwa Sauti',
       stopAudio: 'Simamisha Sauti',
       uploadImagePrompt: 'Weka picha ya mmea au jani',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Utambuzi wa Magonjwa ya Mimea kwa AI',
@@ -237,6 +257,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Market Prices',
       marketplace: 'Agrovet Shop',
       ussd: 'Dial USSD',
+      more: 'More',
+      aboutUs: 'About Us',
+      services: 'Services',
+      investors: 'Investors',
+      careers: 'Careers',
+      contact: 'Contact',
+      devPortal: 'Dev Portal',
+      informationHub: 'Information Hub',
     },
     home: {
       heroTitle: 'Smart Farming, Higher Yields, Better Profits',
@@ -270,6 +298,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Read Aloud',
       stopAudio: 'Stop Audio',
       uploadImagePrompt: 'Attach plant or leaf image',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'AI Plant Disease & Pest Vision Diagnosis',
@@ -347,6 +377,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Thogora wa Thoko',
       marketplace: 'Thoko ya Mbeũ',
       ussd: 'Hũũra USSD',
+      more: 'Makĩria',
+      aboutUs: 'Igũrũ Rietu',
+      services: 'Huduma',
+      investors: 'Wawekezaji',
+      careers: 'Mawira',
+      contact: 'Ũnganĩrwo',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Ũrĩmi Mũgaacĩru, Maciaro Maingĩ, Uumithio Mũnene',
@@ -379,6 +417,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Thoma na Mũgambo',
       stopAudio: 'Rũgama',
       uploadImagePrompt: 'Tũma mbica ya ihuti',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Kũmenya Mĩrimũ ya Mĩmera na Mbica',
@@ -456,6 +496,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Nengo Chiro',
       marketplace: 'Chiro Koth',
       ussd: 'Goyo USSD',
+      more: 'Mok',
+      aboutUs: 'Kodwa',
+      services: 'Tij',
+      investors: 'Jou Kony',
+      careers: 'Tij',
+      contact: 'Kodwa',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Pur Maber, Cham Mang\'eny, Ohala Maduong\'',
@@ -488,6 +536,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Som gi Dwol',
       stopAudio: 'Geng\' Dwol',
       uploadImagePrompt: 'Ket picha mar it yath',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Fwenyo Tuoche mag Cham gi AI',
@@ -565,6 +615,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Ibeeyi yo Siro',
       marketplace: 'Siro ye Imbeu',
       ussd: 'Goba USSD',
+      more: 'Efia',
+      aboutUs: 'Khusi',
+      services: 'Tij',
+      investors: 'Abahasi',
+      careers: 'Tij',
+      contact: 'Kodwa',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Oburimi Vwelukhu, Emikunda Minji, Omwando',
@@ -597,6 +655,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soma nende Liikana',
       stopAudio: 'Imilila',
       uploadImagePrompt: 'Ruma ifoto ye likondo',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Okhumanya Malwaye ke Ebilime',
@@ -674,6 +734,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Taitab Siro',
       marketplace: 'Siroitab Keswek',
       ussd: 'Kwir USSD',
+      more: 'Kong',
+      aboutUs: 'Kokus',
+      services: 'Tij',
+      investors: 'Jou Kony',
+      careers: 'Tij',
+      contact: 'Chorwa',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Kapkorenet ne Nyolu, Robto ne Chang, Rabisiek',
@@ -706,6 +774,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soman eng Kutit',
       stopAudio: 'Kanyis',
       uploadImagePrompt: 'Iyook picha nebo sotet',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Koger Mionwogik che bo Mbukusiek',
@@ -783,6 +853,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Thooa wa Ndũnyũ',
       marketplace: 'Ndũnyũ ya Mbeũ',
       ussd: 'Kũna USSD',
+      more: 'Makĩria',
+      aboutUs: 'Kũsũvĩa',
+      services: 'Tij',
+      investors: 'Abahasi',
+      careers: 'Mawira',
+      contact: 'Ũnganĩrwo',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Ũĩmi Mũseo, Ngetha Mbingĩ, Ũthwii',
@@ -815,6 +893,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Thoma na Wasya',
       stopAudio: 'Tiĩa Wasya',
       uploadImagePrompt: 'Tũma mbica ya itũ',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Kũmanya Mawau ma Mĩmera na AI',
@@ -892,6 +972,14 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       prices: 'Qiimaha Suuqa',
       marketplace: 'Suuqa Beeraha',
       ussd: 'Wac USSD',
+      more: 'Dheeraad',
+      aboutUs: 'Nagu Saabsan',
+      services: 'Adeegyada',
+      investors: 'Maaliyayaasha',
+      careers: 'Shaqo',
+      contact: 'Nala Soo Xiriir',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
     },
     home: {
       heroTitle: 'Beerasho Casri ah, Waxsoosaar Badan, Faa\'iido Wanaagsan',
@@ -924,6 +1012,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Cod ku Akhri',
       stopAudio: 'Jooji Codka',
       uploadImagePrompt: 'Soo rar sawirka caleenta',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Baarista Cudurrada Geedaha ee AI',

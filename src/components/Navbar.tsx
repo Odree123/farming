@@ -9,7 +9,8 @@ import {
   Menu, 
   X,
   ChevronDown,
-  User
+  User,
+  MoreHorizontal
 } from 'lucide-react';
 import { LanguageCode, FarmerProfile } from '../types';
 import { SUPPORTED_LANGUAGES, getTranslation } from '../data/translations';
@@ -31,17 +32,28 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const t = getTranslation(currentLanguage);
 
   const currentLangObj = SUPPORTED_LANGUAGES.find(l => l.code === currentLanguage) || SUPPORTED_LANGUAGES[0];
 
   const navItems = [
     { id: 'home', label: t.nav.home, icon: Sprout },
-    { id: 'chat', label: t.nav.chat, icon: MessageSquareText, badge: 'AI' },
-    { id: 'disease', label: t.nav.disease, icon: ScanLine, badge: 'Vision' },
     { id: 'prices', label: t.nav.prices, icon: TrendingUp },
     { id: 'marketplace', label: t.nav.marketplace, icon: ShoppingBag },
   ];
+
+  const moreNavItems = [
+    { id: 'about', label: t.nav.aboutUs },
+    { id: 'services', label: t.nav.services },
+    { id: 'investors', label: t.nav.investors },
+    { id: 'careers', label: t.nav.careers },
+    { id: 'contact', label: t.nav.contact },
+    { id: 'informationhub', label: t.nav.informationHub },
+    { id: 'devportal', label: t.nav.devPortal },
+  ];
+
+  const isMoreActive = moreNavItems.some(item => item.id === activeTab);
 
   return (
     <header className="sticky top-0 z-40 bg-saf-900 text-white shadow-lg border-b border-saf-800">
@@ -87,14 +99,55 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-saf-300'}`} />
                   <span>{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] bg-saf-700 text-amber-300 px-1.5 py-0.2 rounded font-mono font-bold">
-                      {item.badge}
-                    </span>
-                  )}
                 </button>
               );
             })}
+
+            <div className="relative">
+              <button
+                onClick={() => setMoreMenuOpen(!moreMenuOpen)}
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                  isMoreActive
+                    ? 'bg-saf-800 text-amber-300 shadow-inner'
+                    : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'
+                }`}
+              >
+                <MoreHorizontal className={`w-4 h-4 ${isMoreActive ? 'text-amber-300' : 'text-saf-300'}`} />
+                <span>{t.nav.more}</span>
+                <ChevronDown className={`w-3 h-3 transition-transform ${moreMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {moreMenuOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setMoreMenuOpen(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-48 bg-stone-900 border border-saf-700/80 rounded-xl shadow-xl z-50 py-1.5 overflow-hidden">
+                    {moreNavItems.map((item) => {
+                      const isActive = activeTab === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => {
+                            setActiveTab(item.id);
+                            setMoreMenuOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${
+                            isActive ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'
+                          }`}
+                        >
+                          <span>{item.label}</span>
+                          {isActive && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+            </div>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -175,14 +228,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <Icon className="w-5 h-5 text-saf-400" />
                   <span>{item.label}</span>
                 </div>
-                {item.badge && (
-                  <span className="text-xs bg-saf-700 text-amber-300 px-2 py-0.5 rounded font-mono">
-                    {item.badge}
-                  </span>
-                )}
               </button>
             );
           })}
+
+          <div className="pt-2 border-t border-saf-800/80 mt-2">
+            <div className="text-[11px] font-bold text-stone-500 uppercase tracking-wider px-3 mb-1">{t.nav.more}</div>
+            {moreNavItems.map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${
+                    isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
           <div className="pt-3 border-t border-saf-800/80 mt-2">
             <div className="flex items-center gap-3 px-3 py-2">

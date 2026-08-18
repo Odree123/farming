@@ -40,32 +40,32 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
   };
 
   return (
-    <div className="min-h-screen text-slate-100 bg-[#070b12] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen text-stone-900 bg-stone-50 px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-5xl mx-auto space-y-12">
         
         {/* Quick Section Anchor Pills */}
-        <div className="sticky top-20 z-30 flex items-center justify-center gap-2 overflow-x-auto py-2 px-3 bg-stone-900/90 backdrop-blur-md rounded-2xl border border-stone-800 shadow-xl max-w-2xl mx-auto">
+        <div className="sticky top-20 z-30 flex items-center justify-center gap-2 overflow-x-auto py-2 px-3 bg-white/90 backdrop-blur-md rounded-2xl border border-stone-200 shadow-sm max-w-2xl mx-auto">
           <button
             onClick={() => scrollTo('agricultural-advice')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-300 hover:text-emerald-400 hover:bg-stone-800/80 rounded-xl transition whitespace-nowrap"
+            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
           >
             Agricultural Advice
           </button>
           <button
             onClick={() => scrollTo('agricultural-consultancy')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-300 hover:text-emerald-400 hover:bg-stone-800/80 rounded-xl transition whitespace-nowrap"
+            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
           >
             Agricultural Consultancy
           </button>
           <button
             onClick={() => scrollTo('model-development')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-300 hover:text-emerald-400 hover:bg-stone-800/80 rounded-xl transition whitespace-nowrap"
+            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
           >
             Model Development
           </button>
           <button
             onClick={() => scrollTo('projects')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-300 hover:text-emerald-400 hover:bg-stone-800/80 rounded-xl transition whitespace-nowrap"
+            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
           >
             Projects
           </button>
@@ -73,10 +73,10 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
 
         {/* PAGE HEADER */}
         <div className="text-center max-w-3xl mx-auto space-y-4 pt-4 pb-2">
-          <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-white font-normal">
+          <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-stone-900 font-normal">
             Agricultural Intelligence Solutions
           </h1>
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed font-sans text-center font-normal px-2">
+          <p className="text-stone-600 text-base sm:text-lg leading-relaxed font-sans text-center font-normal px-2">
             From field-level advisory to enterprise API integration, SautiFarm delivers comprehensive
             agricultural intelligence across multiple channels.
           </p>
@@ -86,13 +86,13 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
         <section id="agricultural-advice" ref={adviceRef} className="scroll-mt-28">
           <div 
             id="service-card-advice"
-            className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-emerald-500/40 transition shadow-xl"
+            className="bg-white border border-stone-200 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-saf-500/40 transition shadow-sm"
           >
             <div className="space-y-3">
-              <h2 className="text-2xl font-serif text-white font-normal">
+              <h2 className="text-2xl font-serif text-stone-900 font-normal">
                 Agricultural Advice
               </h2>
-              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
                 AI-powered crop disease identification, treatment recommendations, planting schedules, and fertilizer guidance delivered via WhatsApp, voice calls, and SMS in Kiswahili, Kikuyu, Dholuo, Luhya, and English.
               </p>
             </div>
@@ -121,12 +121,12 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
             </div>
 
             {setActiveTab && (
-              <div className="pt-4 border-t border-stone-800/60 flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-stone-400">Experience our AI Agricultural Advisor directly on SautiFarm</span>
+              <div className="pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs text-stone-500">Experience our AI Agricultural Advisor directly on SautiFarm</span>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setActiveTab('home')}
-                    className="px-3.5 py-1.5 text-xs font-semibold bg-emerald-800 hover:bg-emerald-700 text-white rounded-lg transition"
+                    className="px-3.5 py-1.5 text-xs font-semibold bg-saf-800 hover:bg-saf-700 text-white rounded-lg transition"
                   >
                     Open AI Chat
                   </button>
@@ -146,13 +146,13 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
         <section id="agricultural-consultancy" ref={consultancyRef} className="scroll-mt-28">
           <div 
             id="service-card-consultancy"
-            className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-emerald-500/40 transition shadow-xl"
+            className="bg-white border border-stone-200 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-saf-500/40 transition shadow-sm"
           >
             <div className="space-y-3">
-              <h2 className="text-2xl font-serif text-white font-normal">
+              <h2 className="text-2xl font-serif text-stone-900 font-normal">
                 Agricultural Consultancy
               </h2>
-              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
                 Enterprise-grade advisory services for cooperatives, agrovets, and agricultural organizations. Custom prompt templates, bulk advisory capabilities, and dedicated support.
               </p>
             </div>
@@ -186,13 +186,13 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
         <section id="model-development" ref={modelDevRef} className="scroll-mt-28">
           <div 
             id="service-card-model-dev"
-            className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-emerald-500/40 transition shadow-xl"
+            className="bg-white border border-stone-200 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-saf-500/40 transition shadow-sm"
           >
             <div className="space-y-3">
-              <h2 className="text-2xl font-serif text-white font-normal">
+              <h2 className="text-2xl font-serif text-stone-900 font-normal">
                 Model Development
               </h2>
-              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
                 Building and fine-tuning agricultural AI models for specific crops, regions, and use cases. From disease detection to yield prediction, we develop models trained on Kenyan agricultural data.
               </p>
             </div>
@@ -226,13 +226,13 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
         <section id="projects" ref={projectsRef} className="scroll-mt-28 pb-10">
           <div 
             id="service-card-projects"
-            className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-emerald-500/40 transition shadow-xl"
+            className="bg-white border border-stone-200 rounded-2xl p-7 sm:p-9 space-y-6 hover:border-saf-500/40 transition shadow-sm"
           >
             <div className="space-y-3">
-              <h2 className="text-2xl font-serif text-white font-normal">
+              <h2 className="text-2xl font-serif text-stone-900 font-normal">
                 Projects
               </h2>
-              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
                 Ongoing research and deployment projects across Kenya, from field validation studies to cooperative integration pilots.
               </p>
             </div>

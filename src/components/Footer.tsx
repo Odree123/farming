@@ -5,9 +5,10 @@ import { getTranslation } from '../data/translations';
 
 interface FooterProps {
   currentLanguage: LanguageCode;
+  setActiveTab: (tab: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
+export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab }) => {
   const t = getTranslation(currentLanguage);
 
   return (
@@ -33,21 +34,19 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.home}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.chat}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.disease}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.prices}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.marketplace}</span></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.nav.home}</button></li>
+<li><button onClick={() => setActiveTab('prices')} className="hover:text-amber-400 transition">{t.nav.prices}</button></li>
+              <li><button onClick={() => setActiveTab('marketplace')} className="hover:text-amber-400 transition">{t.nav.marketplace}</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.resources}</h4>
             <ul className="space-y-2 text-stone-500">
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.storiesTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.cropCalendarTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.videoTutorialsTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">KALRO Guidelines</span></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.storiesTitle}</button></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.cropCalendarTitle}</button></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.videoTutorialsTitle}</button></li>
+              <li><button onClick={() => setActiveTab('informationhub')} className="hover:text-amber-400 transition">KALRO Guidelines</button></li>
             </ul>
           </div>
 
