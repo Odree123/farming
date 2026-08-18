@@ -123,3 +123,31 @@ export interface CountyWeather {
     icon: string;
   }[];
 }
+
+export interface FarmerStory {
+  id: string;
+  name: string;
+  location: string;
+  story: string;
+  result: string;
+}
+
+export interface CropCalendarItem {
+  month: string;
+  activity: string;
+  crops: string;
+}
+
+export interface VideoTutorial {
+  id: string;
+  title: string;
+  duration: string;
+  views: string;
+}
+
+export interface MarketStat {
+  label: string;
+  value: string;
+  change: string;
+  trend: 'up' | 'down';
+}

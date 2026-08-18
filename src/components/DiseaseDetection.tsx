@@ -22,13 +22,11 @@ import { SAMPLE_CROP_DISEASES, MARKETPLACE_PRODUCTS } from '../data/mockData';
 
 interface DiseaseDetectionProps {
   currentLanguage: LanguageCode;
-  onAddToCart: (product: ProductItem) => void;
   setActiveTab: (tab: string) => void;
 }
 
 export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
   currentLanguage,
-  onAddToCart,
   setActiveTab,
 }) => {
   const t = getTranslation(currentLanguage);
@@ -37,7 +35,6 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
   const [plantType, setPlantType] = useState<string>('Maize / Mahindi');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [diagnosis, setDiagnosis] = useState<DiseaseDiagnosis | null>(null);
-  const [addedProduct, setAddedProduct] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -55,7 +52,6 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
   };
 
   const handleSampleClick = (sample: DiseaseDiagnosis) => {
-    // Generate a sample image visual representation
     setSelectedImage(null);
     setPlantType(sample.plantName);
     setDiagnosis(sample);
@@ -84,24 +80,15 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
       if (data.diagnosis) {
         setDiagnosis(data.diagnosis);
       } else {
-        // Fallback to closest match
         setDiagnosis(SAMPLE_CROP_DISEASES[0]);
       }
     } catch (err) {
       console.warn('Backend vision failed, fallback to local agronomy database:', err);
-      // Pick matching sample or default
       const matched = SAMPLE_CROP_DISEASES.find(d => plantType.toLowerCase().includes(d.plantName.toLowerCase())) || SAMPLE_CROP_DISEASES[0];
       setDiagnosis(matched);
     } finally {
       setIsAnalyzing(false);
     }
-  };
-
-  const handleBuyProduct = (prodName: string) => {
-    const matched = MARKETPLACE_PRODUCTS.find(p => p.name.toLowerCase().includes(prodName.toLowerCase())) || MARKETPLACE_PRODUCTS[4];
-    onAddToCart(matched);
-    setAddedProduct(prodName);
-    setTimeout(() => setAddedProduct(null), 3000);
   };
 
   const getSeverityBadge = (severity: string) => {
@@ -118,15 +105,14 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
   };
 
   return (
-    <div className="space-y-8 pb-12">
-      {/* Header */}
+    <div className="space-y-6 pb-12">
       <div className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+          <div className="inline-flex items-center gap-2 bg-saf-100 text-saf-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
             <ScanLine className="w-3.5 h-3.5" />
             <span>KALRO & Gemini AI Vision Pathology</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-black text-stone-900 tracking-tight">
             {t.disease.title}
           </h1>
           <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-2xl">
@@ -134,11 +120,11 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
           <select
             value={plantType}
             onChange={(e) => setPlantType(e.target.value)}
-            className="text-xs bg-stone-100 border border-stone-300 rounded-xl px-3 py-2 text-stone-800 font-semibold focus:ring-2 focus:ring-emerald-600 outline-none"
+            className="text-xs bg-stone-100 border border-stone-300 rounded-xl px-3 py-2 text-stone-800 font-semibold focus:ring-2 focus:ring-saf-600 outline-none"
           >
             <option value="Maize / Mahindi">Mahindi (Maize)</option>
             <option value="Tomato / Nyanya">Nyanya (Tomato)</option>
@@ -150,9 +136,7 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
         </div>
       </div>
 
-      {/* Upload Zone & Interactive Sample Strip */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Upload Box (7 Cols) */}
         <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-stone-200 shadow-sm space-y-4">
           <div className="text-sm font-bold text-stone-900 flex items-center justify-between">
             <span>{t.disease.uploadPrompt}</span>
@@ -180,9 +164,9 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
           {!selectedImage ? (
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-emerald-300 hover:border-emerald-500 bg-emerald-50/40 hover:bg-emerald-50/80 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center space-y-3"
+              className="border-2 border-dashed border-saf-300 hover:border-saf-500 bg-saf-50/40 hover:bg-saf-50/80 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center gap-3"
             >
-              <div className="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-saf-100 text-saf-700 flex items-center justify-center shadow-sm">
                 <UploadCloud className="w-7 h-7" />
               </div>
               <div>
@@ -191,14 +175,14 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
               </div>
               <button
                 type="button"
-                className="inline-flex items-center space-x-2 bg-emerald-800 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow"
+                className="inline-flex items-center gap-2 bg-saf-800 hover:bg-saf-700 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow"
               >
                 <Camera className="w-4 h-4 text-amber-300" />
                 <span>{t.disease.takePhoto}</span>
               </button>
             </div>
           ) : (
-            <div className="relative rounded-2xl overflow-hidden border border-emerald-300 max-h-72 bg-stone-950 flex items-center justify-center">
+            <div className="relative rounded-2xl overflow-hidden border border-saf-300 max-h-72 bg-stone-950 flex items-center justify-center">
               <img
                 src={selectedImage}
                 alt="Selected Plant Leaf"
@@ -206,15 +190,14 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                 referrerPolicy="no-referrer"
               />
               {isAnalyzing && (
-                <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm flex flex-col items-center justify-center text-white space-y-3">
-                  <div className="w-12 h-12 rounded-full border-4 border-emerald-400 border-t-transparent animate-spin"></div>
-                  <p className="text-xs font-bold text-emerald-300">{t.disease.analyzing}</p>
+                <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm flex flex-col items-center justify-center text-white gap-3">
+                  <div className="w-12 h-12 rounded-full border-4 border-saf-400 border-t-transparent animate-spin"></div>
+                  <p className="text-xs font-bold text-saf-300">{t.disease.analyzing}</p>
                 </div>
               )}
             </div>
           )}
 
-          {/* Quick Clickable Samples */}
           <div>
             <div className="text-xs font-bold text-stone-700 mb-2">
               {t.disease.sampleImages} (Bonyeza kupima bila picha):
@@ -226,12 +209,12 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                   onClick={() => handleSampleClick(sample)}
                   className={`p-2.5 rounded-xl border text-left transition ${
                     diagnosis?.id === sample.id
-                      ? 'bg-emerald-800 text-white border-emerald-900 shadow-sm'
-                      : 'bg-stone-50 hover:bg-emerald-50/60 border-stone-200 text-stone-800'
+                      ? 'bg-saf-800 text-white border-saf-900 shadow-sm'
+                      : 'bg-stone-50 hover:bg-saf-50/60 border-stone-200 text-stone-800'
                   }`}
                 >
                   <div className="text-[11px] font-bold truncate">{sample.diseaseName.split('(')[0]}</div>
-                  <div className={`text-[10px] mt-0.5 truncate ${diagnosis?.id === sample.id ? 'text-emerald-200' : 'text-stone-500'}`}>
+                  <div className={`text-[10px] mt-0.5 truncate ${diagnosis?.id === sample.id ? 'text-saf-200' : 'text-stone-500'}`}>
                     {sample.plantName}
                   </div>
                 </button>
@@ -240,16 +223,15 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
           </div>
         </div>
 
-        {/* Diagnosis Results Card (5 Cols) */}
         <div className="lg:col-span-5 bg-white rounded-2xl p-6 border border-stone-200 shadow-sm flex flex-col justify-between">
           {diagnosis ? (
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-emerald-700">
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-saf-700">
                     {diagnosis.plantName}
                   </span>
-                  <h2 className="text-lg font-extrabold text-stone-900 leading-snug">
+                  <h2 className="text-lg font-black text-stone-900 leading-snug">
                     {diagnosis.diseaseName}
                   </h2>
                   {diagnosis.localName && (
@@ -261,15 +243,14 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                 {getSeverityBadge(diagnosis.severity)}
               </div>
 
-              {/* Confidence Meter */}
               <div className="bg-stone-50 p-3 rounded-xl border border-stone-200/80">
                 <div className="flex justify-between text-xs font-bold text-stone-700 mb-1">
                   <span>{t.disease.confidence}</span>
-                  <span className="text-emerald-700">{diagnosis.confidence}%</span>
+                  <span className="text-saf-700">{diagnosis.confidence}%</span>
                 </div>
                 <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-saf-500 to-saf-600 rounded-full transition-all duration-500"
                     style={{ width: `${diagnosis.confidence}%` }}
                   />
                 </div>
@@ -279,7 +260,6 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                 </div>
               </div>
 
-              {/* Symptoms Accordion Box */}
               <div>
                 <h3 className="text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5 flex items-center">
                   <AlertTriangle className="w-3.5 h-3.5 mr-1 text-amber-600" />
@@ -292,68 +272,68 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                 </ul>
               </div>
 
-              {/* Organic Remedy */}
-              <div className="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/80">
-                <h3 className="text-xs font-bold text-emerald-900 uppercase tracking-wider mb-1 flex items-center">
-                  <Leaf className="w-3.5 h-3.5 mr-1 text-emerald-700" />
+              <div className="bg-saf-50/70 p-3 rounded-xl border border-saf-200/80">
+                <h3 className="text-xs font-bold text-saf-900 uppercase tracking-wider mb-1 flex items-center">
+                  <Leaf className="w-3.5 h-3.5 mr-1 text-saf-700" />
                   {t.disease.organicCure}
                 </h3>
-                <ul className="text-xs text-emerald-800 space-y-1 list-disc list-inside">
+                <ul className="text-xs text-saf-800 space-y-1 list-disc list-inside">
                   {diagnosis.organicTreatment.slice(0, 2).map((cure, idx) => (
                     <li key={idx} className="leading-relaxed">{cure}</li>
                   ))}
                 </ul>
               </div>
 
-              {/* Chemical Remedy */}
-              <div className="bg-blue-50/70 p-3 rounded-xl border border-blue-200/80">
-                <h3 className="text-xs font-bold text-blue-900 uppercase tracking-wider mb-1 flex items-center">
-                  <ShieldAlert className="w-3.5 h-3.5 mr-1 text-blue-700" />
+              <div className="bg-sky-50/70 p-3 rounded-xl border border-sky-200/80">
+                <h3 className="text-xs font-bold text-sky-900 uppercase tracking-wider mb-1 flex items-center">
+                  <ShieldAlert className="w-3.5 h-3.5 mr-1 text-sky-700" />
                   {t.disease.chemicalCure}
                 </h3>
-                <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
+                <ul className="text-xs text-sky-800 space-y-1 list-disc list-inside">
                   {diagnosis.chemicalTreatment.slice(0, 2).map((cure, idx) => (
                     <li key={idx} className="leading-relaxed">{cure}</li>
                   ))}
                 </ul>
               </div>
 
-              {/* Buy Treatment in Agrovet Shop */}
               {diagnosis.recommendedProducts && diagnosis.recommendedProducts.length > 0 && (
                 <div className="pt-2">
                   <div className="text-xs font-bold text-stone-800 mb-2">
                     Dawa Zilizoidhinishwa Dukani:
                   </div>
                   <div className="space-y-2">
-                    {diagnosis.recommendedProducts.map((prod, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex items-center justify-between"
-                      >
-                        <div>
-                          <div className="text-xs font-bold text-stone-900">{prod.name}</div>
-                          <div className="text-[10px] text-stone-500">{prod.dosage}</div>
+                    {diagnosis.recommendedProducts.map((prod, idx) => {
+                      const matchedProduct = MARKETPLACE_PRODUCTS.find(p => p.name.toLowerCase().includes(prod.name.toLowerCase())) || MARKETPLACE_PRODUCTS[4];
+                      return (
+                        <div
+                          key={idx}
+                          className="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex items-center justify-between"
+                        >
+                          <div>
+                            <div className="text-xs font-bold text-stone-900">{prod.name}</div>
+                            <div className="text-[10px] text-stone-500">{prod.dosage}</div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-saf-800 font-mono">
+                              KES {prod.priceKES.toLocaleString()}
+                            </span>
+                            <button
+                              onClick={() => setActiveTab('marketplace')}
+                              className="bg-saf-800 hover:bg-saf-700 text-white px-2.5 py-1 rounded-lg text-xs font-medium transition flex items-center gap-1 shadow-sm"
+                            >
+                              <ShoppingBag className="w-3 h-3" />
+                              <span>{t.marketplace.allCategories}</span>
+                            </button>
+                          </div>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-xs font-bold text-emerald-800 font-mono">
-                            KES {prod.priceKES.toLocaleString()}
-                          </span>
-                          <button
-                            onClick={() => handleBuyProduct(prod.name)}
-                            className="bg-emerald-800 hover:bg-emerald-700 text-white px-2.5 py-1 rounded-lg text-xs font-medium transition flex items-center space-x-1 shadow-sm"
-                          >
-                            <ShoppingBag className="w-3 h-3" />
-                            <span>{addedProduct === prod.name ? 'Imeongezwa!' : 'Nunua'}</span>
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
             </div>
           ) : (
-            <div className="h-full flex flex-col items-center justify-center text-center p-8 text-stone-400 space-y-3">
+            <div className="h-full flex flex-col items-center justify-center text-center p-8 text-stone-400 gap-3">
               <div className="w-12 h-12 rounded-2xl bg-stone-100 flex items-center justify-center text-stone-400">
                 <ScanLine className="w-6 h-6" />
               </div>

@@ -41,9 +41,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     if (saved) {
       try {
         return JSON.parse(saved);
-      } catch (e) {
-        // fallback
-      }
+      } catch (e) {}
     }
     return [
       {
@@ -67,13 +65,11 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
-  // Scroll to bottom when messages update
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     localStorage.setItem('sautifarm_chat_history', JSON.stringify(messages));
   }, [messages]);
 
-  // Handle voice recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -89,7 +85,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
 
       mediaRecorder.onstop = () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        // Simulating transcription for the voice note
         const voicePrompts: Record<LanguageCode, string> = {
           sw: 'Ni mbolea gani inafaa kupanda mahindi wakati huu wa mvua za masika?',
           en: 'What is the best planting fertilizer for highland maize?',
@@ -120,7 +115,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     }
   };
 
-  // Handle image attachment
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -132,7 +126,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     }
   };
 
-  // Send message
   const handleSendMessage = async (textToSend?: string) => {
     const messageText = textToSend || inputPrompt.trim();
     if (!messageText && !selectedImage) return;
@@ -183,7 +176,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (err) {
       console.error('Error fetching chat response:', err);
-      // Fallback helpful offline response in case of API hiccup
       const fallbackReply: ChatMessage = {
         id: `msg-${Date.now() + 1}`,
         sender: 'assistant',
@@ -196,7 +188,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     }
   };
 
-  // Text to Speech
   const toggleSpeak = (id: string, text: string) => {
     if (audioPlayingId === id) {
       window.speechSynthesis?.cancel();
@@ -243,32 +234,31 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
 
   return (
     <div className="flex flex-col h-[calc(100vh-140px)] max-h-[850px] bg-white rounded-2xl border border-stone-200/90 shadow-sm overflow-hidden">
-      {/* Chat Top Header */}
-      <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white px-4 py-3 flex items-center justify-between border-b border-emerald-700/80">
-        <div className="flex items-center space-x-3">
+      <div className="bg-gradient-to-r from-saf-900 to-saf-800 text-white px-4 py-3 flex items-center justify-between border-b border-saf-700/80">
+        <div className="flex items-center gap-3">
           <div className="relative">
             <div className="w-10 h-10 rounded-xl bg-amber-400 text-stone-950 flex items-center justify-center font-bold shadow">
-              <Bot className="w-6 h-6 text-emerald-950" />
+              <Bot className="w-6 h-6 text-saf-950" />
             </div>
-            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 border-2 border-emerald-900 rounded-full"></span>
+            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 border-2 border-saf-900 rounded-full"></span>
           </div>
           <div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-2">
               <h2 className="text-sm font-bold tracking-tight">{t.chat.title}</h2>
-              <span className="text-[10px] bg-emerald-700 text-amber-300 px-1.5 py-0.2 rounded font-semibold">
+              <span className="text-[10px] bg-saf-700 text-amber-300 px-1.5 py-0.2 rounded font-semibold">
                 Online
               </span>
             </div>
-            <p className="text-[11px] text-emerald-200/90">
+            <p className="text-[11px] text-saf-200/90">
               Ushauri wa Kilimo • Kaunti: {farmer.county || 'Kenya'} • Ekari {farmer.farmSizeAcres || 2}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center gap-1">
           <button
             onClick={clearChat}
-            className="p-1.5 text-emerald-300 hover:text-white hover:bg-emerald-800 rounded-lg transition"
+            className="p-1.5 text-saf-300 hover:text-white hover:bg-saf-800 rounded-lg transition"
             title="Futa Mazungumzo / Clear Chat"
           >
             <Trash2 className="w-4 h-4" />
@@ -276,52 +266,47 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
         </div>
       </div>
 
-      {/* Suggested Prompt Chips */}
-      <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs">
-        <span className="text-[11px] font-semibold text-stone-500 shrink-0 flex items-center">
+      <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
+        <span className="text-[11px] font-bold text-stone-500 shrink-0 flex items-center">
           <Sparkles className="w-3 h-3 mr-1 text-amber-500" /> Uliza:
         </span>
         {t.chat.suggestedQuestions.map((q, idx) => (
           <button
             key={idx}
             onClick={() => handleSendMessage(q)}
-            className="shrink-0 bg-white hover:bg-emerald-50 border border-stone-200 hover:border-emerald-400 text-stone-700 hover:text-emerald-900 px-2.5 py-1 rounded-full text-[11px] font-medium transition"
+            className="shrink-0 bg-white hover:bg-saf-50 border border-stone-200 hover:border-saf-400 text-stone-700 hover:text-saf-900 px-2.5 py-1 rounded-full text-[11px] font-medium transition"
           >
             {q}
           </button>
         ))}
       </div>
 
-      {/* Messages Scroll Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50">
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
             <div
               key={msg.id}
-              className={`flex items-start space-x-2.5 ${isUser ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}
+              className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
             >
-              {/* Avatar */}
               <div
                 className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-sm ${
                   isUser
                     ? 'bg-amber-500 text-stone-950'
-                    : 'bg-emerald-800 text-amber-300'
+                    : 'bg-saf-800 text-amber-300'
                 }`}
               >
                 {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
               </div>
 
-              {/* Message Body */}
               <div className={`max-w-[85%] sm:max-w-[75%] space-y-1`}>
                 <div
                   className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
                     isUser
-                      ? 'bg-emerald-800 text-white rounded-tr-none'
+                      ? 'bg-saf-800 text-white rounded-tr-none'
                       : 'bg-white text-stone-800 border border-stone-200/90 rounded-tl-none'
                   }`}
                 >
-                  {/* Attached Image if any */}
                   {msg.imageUrl && (
                     <div className="mb-2.5 rounded-lg overflow-hidden border border-stone-200 max-w-xs">
                       <img
@@ -333,19 +318,17 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
                     </div>
                   )}
 
-                  {/* Formatted Text */}
                   <div className="whitespace-pre-wrap">{msg.text}</div>
                 </div>
 
-                {/* Footer Micro-bar (Timestamp, Audio TTS, Copy) */}
-                <div className={`flex items-center space-x-2 text-[10px] text-stone-400 px-1 ${isUser ? 'justify-end' : 'justify-start'}`}>
+                <div className={`flex items-center gap-2 text-[10px] text-stone-400 px-1 ${isUser ? 'justify-end' : 'justify-start'}`}>
                   <span>{msg.timestamp}</span>
                   {!isUser && (
                     <>
                       <span>•</span>
                       <button
                         onClick={() => toggleSpeak(msg.id, msg.text)}
-                        className="hover:text-emerald-700 font-medium flex items-center space-x-1"
+                        className="hover:text-saf-700 font-medium flex items-center gap-1"
                         title={audioPlayingId === msg.id ? t.chat.stopAudio : t.chat.speakResponse}
                       >
                         {audioPlayingId === msg.id ? (
@@ -363,11 +346,11 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
                       <span>•</span>
                       <button
                         onClick={() => copyToClipboard(msg.id, msg.text)}
-                        className="hover:text-emerald-700"
+                        className="hover:text-saf-700"
                         title="Copy text"
                       >
                         {copiedId === msg.id ? (
-                          <Check className="w-3 h-3 text-emerald-600" />
+                          <Check className="w-3 h-3 text-saf-600" />
                         ) : (
                           <Copy className="w-3 h-3" />
                         )}
@@ -381,12 +364,12 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
         })}
 
         {isLoading && (
-          <div className="flex items-start space-x-2.5">
-            <div className="w-8 h-8 rounded-xl bg-emerald-800 text-amber-300 flex items-center justify-center shrink-0">
+          <div className="flex items-start gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-saf-800 text-amber-300 flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4" />
             </div>
-            <div className="bg-white border border-stone-200/90 rounded-2xl rounded-tl-none p-3.5 shadow-sm text-xs text-stone-600 flex items-center space-x-2">
-              <Loader2 className="w-4 h-4 text-emerald-600 animate-spin" />
+            <div className="bg-white border border-stone-200/90 rounded-2xl rounded-tl-none p-3.5 shadow-sm text-xs text-stone-600 flex items-center gap-2">
+              <Loader2 className="w-4 h-4 text-saf-600 animate-spin" />
               <span>Bwana Shamba anatafakari ushauri wa kitaalamu...</span>
             </div>
           </div>
@@ -395,38 +378,35 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Selected Image Preview before sending */}
       {selectedImage && (
-        <div className="px-4 py-2 bg-emerald-50 border-t border-emerald-100 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+        <div className="px-4 py-2 bg-saf-50 border-t border-saf-100 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <img
               src={selectedImage}
               alt="Leaf Preview"
-              className="w-10 h-10 object-cover rounded-lg border border-emerald-300"
+              className="w-10 h-10 object-cover rounded-lg border border-saf-300"
             />
-            <span className="text-xs text-emerald-900 font-medium">
+            <span className="text-xs text-saf-900 font-medium">
               Picha ya jani la mmea imeambatanishwa
             </span>
           </div>
           <button
             onClick={() => setSelectedImage(null)}
-            className="p-1 hover:bg-emerald-200 rounded text-emerald-800"
+            className="p-1 hover:bg-saf-200 rounded text-saf-800"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
       )}
 
-      {/* Input Bar */}
       <div className="p-3 bg-white border-t border-stone-200">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex items-center space-x-2"
+          className="flex items-center gap-2"
         >
-          {/* Hidden File Input */}
           <input
             type="file"
             ref={fileInputRef}
@@ -435,7 +415,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             className="hidden"
           />
 
-          {/* Camera / Image Button */}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
@@ -445,7 +424,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             <Camera className="w-5 h-5" />
           </button>
 
-          {/* Voice Note Button */}
           <button
             type="button"
             onClick={isRecording ? stopRecording : startRecording}
@@ -456,10 +434,9 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             }`}
             title={isRecording ? 'Bonyeza kumaliza kurekodi' : 'Ongea ujumbe wa sauti'}
           >
-            {isRecording ? <Square className="w-5 h-5" /> : <Mic className="w-5 h-5 text-emerald-700" />}
+            {isRecording ? <Square className="w-5 h-5" /> : <Mic className="w-5 h-5 text-saf-700" />}
           </button>
 
-          {/* Text Input */}
           <input
             type="text"
             id="chat-input-text"
@@ -467,10 +444,9 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             onChange={(e) => setInputPrompt(e.target.value)}
             placeholder={isRecording ? t.chat.recordingVoice : t.chat.placeholder}
             disabled={isLoading}
-            className="flex-1 bg-stone-50 border border-stone-300 focus:border-emerald-600 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-stone-900 outline-none transition"
+            className="flex-1 bg-stone-50 border border-stone-300 focus:border-saf-600 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-stone-900 outline-none transition"
           />
 
-          {/* Send Button */}
           <button
             type="submit"
             id="chat-send-btn"
@@ -478,7 +454,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             className={`p-2.5 rounded-xl font-medium transition flex items-center justify-center ${
               (!inputPrompt.trim() && !selectedImage) || isLoading
                 ? 'bg-stone-200 text-stone-400 cursor-not-allowed'
-                : 'bg-emerald-800 hover:bg-emerald-700 text-white shadow-md'
+                : 'bg-saf-800 hover:bg-saf-700 text-white shadow-md'
             }`}
           >
             <Send className="w-5 h-5" />

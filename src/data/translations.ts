@@ -34,6 +34,9 @@ export interface TranslationDict {
     todayPricesTitle: string;
     marketArbitrageTitle: string;
     offlineModeNotice: string;
+    storiesTitle: string;
+    cropCalendarTitle: string;
+    videoTutorialsTitle: string;
   };
   chat: {
     title: string;
@@ -83,12 +86,20 @@ export interface TranslationDict {
     searchPlaceholder: string;
     allCategories: string;
     addToCart: string;
+    viewDetails: string;
     inStock: string;
     outOfStock: string;
     verifiedKephis: string;
     cart: string;
     checkoutMpesa: string;
     total: string;
+    whatsappSeller: string;
+    callSeller: string;
+  };
+  footer: {
+    quickLinks: string;
+    resources: string;
+    contact: string;
   };
   auth: {
     loginTitle: string;
@@ -129,6 +140,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Bei za Wakulima Masokoni Leo (KES)',
       marketArbitrageTitle: 'Fursa ya Faida: Wapi Uuze Mazao Yako?',
       offlineModeNotice: 'Hali ya bila mtandao inafanya kazi. Unaweza kutumia ujumbe mfupi au USSD.',
+      storiesTitle: 'Hadithi za Wafanyabiashara Waliyofanikiwa',
+      cropCalendarTitle: 'Kalenda ya Mazao',
+      videoTutorialsTitle: 'Mafunzo ya Video',
     },
     chat: {
       title: 'Bwana Shamba AI (SautiFarm)',
@@ -183,12 +197,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Tafuta mbegu, mbolea, au vifaa vya kilimo...',
       allCategories: 'Vitengo Vyote',
       addToCart: 'Weka Kikapuni',
+      viewDetails: 'Tazama Maelezo',
       inStock: 'Ipo Dukan',
       outOfStock: 'Imeisha',
       verifiedKephis: 'Imethibitishwa na KEPHIS',
       cart: 'Kikapu cha Ununuzi',
       checkoutMpesa: 'Lipa na M-Pesa',
       total: 'Jumla Kuu',
+      whatsappSeller: 'Wasiliana kwa WhatsApp',
+      callSeller: 'Piga Simu Muuzaji',
+    },
+    footer: {
+      quickLinks: 'Kiungo Muhimu',
+      resources: 'Rasilimali',
+      contact: 'Wasiliana Nasi',
     },
     auth: {
       loginTitle: 'Kuingia kwa Mkulima (SautiFarm)',
@@ -228,6 +250,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Today’s Live Market Commodity Prices (KES)',
       marketArbitrageTitle: 'Market Price Arbitrage & Profit Opportunities',
       offlineModeNotice: 'Offline Mode Active. Cached data available. SMS/USSD fallback supported.',
+      storiesTitle: 'Farmer Success Stories',
+      cropCalendarTitle: 'Crop Calendar',
+      videoTutorialsTitle: 'Video Tutorials',
     },
     chat: {
       title: 'SautiFarm AI Agronomist',
@@ -282,12 +307,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Search seeds, fertilizers, pesticides, drip kits...',
       allCategories: 'All Categories',
       addToCart: 'Add to Cart',
+      viewDetails: 'View Details',
       inStock: 'In Stock',
       outOfStock: 'Out of Stock',
       verifiedKephis: 'KEPHIS Certified',
       cart: 'Cart',
       checkoutMpesa: 'Pay with M-Pesa STK Push',
       total: 'Grand Total',
+      whatsappSeller: 'WhatsApp Seller',
+      callSeller: 'Call Seller',
+    },
+    footer: {
+      quickLinks: 'Quick Links',
+      resources: 'Resources',
+      contact: 'Contact',
     },
     auth: {
       loginTitle: 'Farmer Sign In / Registration',
@@ -327,6 +360,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Thogora wa Ũmũthĩ Thoko-inĩ (KES)',
       marketArbitrageTitle: 'Thoko Ĩrĩa Ĩna Thogora Mwega',
       offlineModeNotice: 'Nĩ ũrahota kũhũthĩra USSD kũũria ciũria.',
+      storiesTitle: 'Niundo cia Arĩmi Aathiũrũire',
+      cropCalendarTitle: 'Kalenda ya Mmera',
+      videoTutorialsTitle: 'Vidio cia Kũruta',
     },
     chat: {
       title: 'Bwana Shamba AI (Gĩkũyũ)',
@@ -380,12 +416,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Caria mbeũ, thumu, kana indo cia kũnyitĩrĩria...',
       allCategories: 'Mĩthemba Yothe',
       addToCart: 'Ĩkĩra Kĩondo-inĩ',
+      viewDetails: 'Rora Details',
       inStock: 'Nĩkĩo Kĩo',
       outOfStock: 'Nĩgĩathirire',
       verifiedKephis: 'Nĩkĩonirwo nĩ KEPHIS',
       cart: 'Kĩondo Gĩaku',
       checkoutMpesa: 'Rĩha na M-Pesa',
       total: 'Thogora Wothe',
+      whatsappSeller: 'WhatsApp Muuzi',
+      callSeller: 'Hũra Simu Muuzi',
+    },
+    footer: {
+      quickLinks: 'Link cia Hara hara',
+      resources: 'Risorsa',
+      contact: 'Ũnganĩre',
     },
     auth: {
       loginTitle: 'Kũingĩra kwa Mũrĩmi (SautiFarm)',
@@ -425,6 +469,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Nengo mag Chiro ma Kawuono (KES)',
       marketArbitrageTitle: 'Kama Nengo Ber mar Uso Cham',
       offlineModeNotice: 'Inyalo tiyo gi USSD kapo ni net onge.',
+      storiesTitle: 'Sigendni mag Jathwon',
+      cropCalendarTitle: 'Kalenda mar Cham',
+      videoTutorialsTitle: 'Vidio mag Puonj',
     },
     chat: {
       title: 'Japuonj Pur mar AI (Dholuo)',
@@ -478,12 +525,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Many koth, yadh pur, gige pi...',
       allCategories: 'Kinde Duto',
       addToCart: 'Ket e Okapu',
+      viewDetails: 'Nen Details',
       inStock: 'Nitiere',
       outOfStock: 'Oserumo',
       verifiedKephis: 'KEPHIS Oseyiego',
       cart: 'Okapu Mari',
       checkoutMpesa: 'Chul gi M-Pesa',
       total: 'Kar Kwer Duto',
+      whatsappSeller: 'WhatsApp Jualo',
+      callSeller: 'Luong Jualo',
+    },
+    footer: {
+      quickLinks: 'Retok Mapiyo',
+      resources: 'Ngech',
+      contact: 'Kodwa',
     },
     auth: {
       loginTitle: 'Donjo mar Japur (SautiFarm)',
@@ -523,6 +578,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Ibeeyi yo Siro ya Rero (KES)',
       marketArbitrageTitle: 'Asi Ibeeyi ili Indayi yo Gusia',
       offlineModeNotice: 'Onyala okhutumia USSD nali obulahi.',
+      storiesTitle: 'Niundo chia Abarimi Bafwene',
+      cropCalendarTitle: 'Kalinda ya Ebilime',
+      videoTutorialsTitle: 'Vidiozia ya Okhunyirira',
     },
     chat: {
       title: 'Omwalimu wo Vurimi AI (Luluhya)',
@@ -576,12 +634,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Ronda imbeu, ishumu, amatsikhi...',
       allCategories: 'Tsing\'ano Tsiosi',
       addToCart: 'Shila mu Shinang\'ano',
+      viewDetails: 'Lola Ebimanyisio',
       inStock: 'Yilaho',
       outOfStock: 'Yashira',
       verifiedKephis: 'Yalolwa nende KEPHIS',
       cart: 'Shinang\'ano Shio',
       checkoutMpesa: 'Rung\'a nende M-Pesa',
       total: 'Tsikura Tsiosi',
+      whatsappSeller: 'WhatsApp Omurushi',
+      callSeller: 'Hura Simu Omurushi',
+    },
+    footer: {
+      quickLinks: 'Links Shiololi',
+      resources: 'Ngech',
+      contact: 'Soma Naso',
     },
     auth: {
       loginTitle: 'Okhwinjira khwo Mulimi (SautiFarm)',
@@ -621,6 +687,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Taitab Siroitab Raini (KES)',
       marketArbitrageTitle: 'Siro ne Mi Tait ne Kararan',
       offlineModeNotice: 'Imuchi iyai tuiyet ak USSD ye mami net.',
+      storiesTitle: 'Niundo che bo Kapkorenok',
+      cropCalendarTitle: 'Kalinda ne bo Ebilime',
+      videoTutorialsTitle: 'Vidio che bo Puonj',
     },
     chat: {
       title: 'Kiptaiyat ne bo AI (Kalenjin)',
@@ -674,12 +743,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Ceng keswek, yabosiek, kerichek...',
       allCategories: 'Tugul',
       addToCart: 'Keny eng Konoito',
+      viewDetails: 'Geer Mab',
       inStock: 'Mitei',
       outOfStock: 'Kogosir',
       verifiedKephis: 'Kiyap KEPHIS',
       cart: 'Konoitang\'ung',
       checkoutMpesa: 'Lipan ak M-Pesa',
       total: 'Kiroboto Tugul',
+      whatsappSeller: 'WhatsApp Che Mius',
+      callSeller: 'Cham Simu Che Mius',
+    },
+    footer: {
+      quickLinks: 'Links che Bo Sogor',
+      resources: 'Ngech',
+      contact: 'Chorwa',
     },
     auth: {
       loginTitle: 'Chutto nebo Kipsoiyot (SautiFarm)',
@@ -719,6 +796,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Thooa wa Ũmũnthĩ Ndũnyũnĩ (KES)',
       marketArbitrageTitle: 'Vandũ Vaa Thooa Mũseo wa Kũthaa Ngetha',
       offlineModeNotice: 'Noũtũmĩe USSD kũlya makũlyo me yĩulu wa ũĩmi.',
+      storiesTitle: 'Niundo sya Aimi Matũlũkĩle',
+      cropCalendarTitle: 'Kalinda ya Mmera',
+      videoTutorialsTitle: 'Vidio sya Kũmanyĩa',
     },
     chat: {
       title: 'Mwalimũ wa Ũĩmi AI (Kĩkamba)',
@@ -772,12 +852,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Mantha mbeũ, mbolea, mĩtambo ya kĩw\'ĩ...',
       allCategories: 'Mĩthemba Yonthe',
       addToCart: 'Ĩkya Kĩondonĩ',
+      viewDetails: 'Sisya Mab',
       inStock: 'Yĩvo',
       outOfStock: 'Nĩyathira',
       verifiedKephis: 'Nĩyaĩkĩĩthw\'a nĩ KEPHIS',
       cart: 'Kĩondo Kyaku',
       checkoutMpesa: 'Ĩva na M-Pesa',
       total: 'Thooa Wonthe',
+      whatsappSeller: 'WhatsApp Mũusi',
+      callSeller: 'Ĩtha Simu Mũusi',
+    },
+    footer: {
+      quickLinks: 'Links ya Kw\'onany\'a',
+      resources: 'Ngech',
+      contact: 'Kũmyĩ',
     },
     auth: {
       loginTitle: 'Kũlika kwa Mũĩmi (SautiFarm)',
@@ -817,6 +905,9 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       todayPricesTitle: 'Qiimaha Suuqyada Maanta (KES)',
       marketArbitrageTitle: 'Suuqa Ugu Qiimaha Wanaagsan',
       offlineModeNotice: 'Waxaad isticmaali kartaa USSD marka uusan internet jirin.',
+      storiesTitle: 'Sheekooyinka Beeralayda Guulaysta',
+      cropCalendarTitle: 'Hambalalka Beeraha',
+      videoTutorialsTitle: 'Warbixinooyinka Fiidiyowga',
     },
     chat: {
       title: 'Khabiirka Beeraha ee AI (Af-Soomaali)',
@@ -870,12 +961,20 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       searchPlaceholder: 'Raadi abuur, bacrimi, dawooyinka cayayaanka...',
       allCategories: 'Dhammaan Qeybaha',
       addToCart: 'Ku dar Gaariga',
+      viewDetails: 'Fiiri Faahfaahin',
       inStock: 'Waa Diyaar',
       outOfStock: 'Wuu Dhamaaday',
       verifiedKephis: 'KEPHIS ayaa Hubisay',
       cart: 'Gaariga Wax Iibsiga',
       checkoutMpesa: 'Ku bixi M-Pesa',
       total: 'Wadarta Guud',
+      whatsappSeller: 'WhatsApp Iibsade',
+      callSeller: 'Wac Iibsade',
+    },
+    footer: {
+      quickLinks: 'Laamaasta',
+      resources: 'Hagidh',
+      contact: 'Nala Soo Xiriir',
     },
     auth: {
       loginTitle: 'Galitaanka Beeraleyda (SautiFarm)',

@@ -1,4 +1,4 @@
-import { DiseaseDiagnosis, MarketPrice, ProductItem, CountyWeather } from '../types';
+import { DiseaseDiagnosis, MarketPrice, ProductItem, CountyWeather, FarmerStory, CropCalendarItem, VideoTutorial, MarketStat } from '../types';
 
 export const KENYA_COUNTIES = [
   'Uasin Gishu (Eldoret)',
@@ -732,4 +732,63 @@ export const COUNTY_WEATHERS: CountyWeather[] = [
       { day: 'Fri', temp: 29, rainProb: 10, icon: 'sun' },
     ],
   },
+];
+
+export const FARMER_STORIES: FarmerStory[] = [
+  {
+    id: 'story-1',
+    name: 'William Rono',
+    location: 'Uasin Gishu, Eldoret',
+    story: 'Used SautiFarm AI to identify Fall Armyworm early and applied Belt 480SC before the infestation spread. Saved 85% of my 3-acre maize crop.',
+    result: 'Yield increased from 18 to 32 bags per acre',
+  },
+  {
+    id: 'story-2',
+    name: 'Grace Wanjiku',
+    location: 'Kiambu, Limuru',
+    story: 'Followed the weather advisory to spray Ridomil Gold before the heavy rains. My tomato crop survived the Late Blight season with minimal losses.',
+    result: 'Harvested 1,200 crates vs 400 expected',
+  },
+  {
+    id: 'story-3',
+    name: 'David Kipchumba',
+    location: 'Trans-Nzoia, Kitale',
+    story: 'Used the arbitrage calculator to sell my maize in Kongowea instead of local market. Made KES 45,000 extra profit on 50 bags.',
+    result: 'KES 45,000 extra profit on 50 bags',
+  },
+  {
+    id: 'story-4',
+    name: 'Agnes Njeri',
+    location: 'Nakuru, Bahati',
+    story: 'Switched to DK777 hybrid seed after the recommendation. My potato yields doubled even during the dry spell.',
+    result: 'Potato yields doubled in 2 seasons',
+  },
+];
+
+export const CROP_CALENDAR: CropCalendarItem[] = [
+  { month: 'Jan', activity: 'Land preparation', crops: 'Maize, Beans, Potatoes' },
+  { month: 'Feb', activity: 'Early planting', crops: 'Maize, Wheat, Barley' },
+  { month: 'Mar', activity: 'Top-dressing fertilizer', crops: 'Maize, Wheat' },
+  { month: 'Apr', activity: 'Pest scouting', crops: 'All crops' },
+  { month: 'May', activity: 'Harvesting', crops: 'Wheat, Barley' },
+  { month: 'Jun', activity: 'Short rains planting', crops: 'Beans, Maize' },
+  { month: 'Jul', activity: 'Weeding & thinning', crops: 'All crops' },
+  { month: 'Aug', activity: 'Disease monitoring', crops: 'Tomatoes, Potatoes' },
+  { month: 'Sep', activity: 'Fungicide spray', crops: 'Coffee, Bananas' },
+  { month: 'Oct', activity: 'Long rains planting', crops: 'Maize, Beans' },
+  { month: 'Nov', activity: 'Fertilizer application', crops: 'All crops' },
+  { month: 'Dec', activity: 'Harvesting & storage', crops: 'Maize, Beans' },
+];
+
+export const VIDEO_TUTORIALS: VideoTutorial[] = [
+  { id: 'vid-1', title: 'How to Identify Fall Armyworm Early', duration: '3:45', views: '12K views' },
+  { id: 'vid-2', title: 'Proper Fertilizer Application for Maize', duration: '5:20', views: '8.5K views' },
+  { id: 'vid-3', title: 'Drip Irrigation Setup for Small Farms', duration: '7:15', views: '15K views' },
+];
+
+export const MARKET_STATS: MarketStat[] = [
+  { label: 'Markets Covered', value: '7', change: '+2 this month', trend: 'up' },
+  { label: 'Crops Tracked', value: '25+', change: '+5 new items', trend: 'up' },
+  { label: 'Daily Updates', value: '06:00 AM', change: 'Live prices', trend: 'up' },
+  { label: 'Farmers Served', value: '15,000+', change: '+500 this week', trend: 'up' },
 ];
