@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HomeDashboard } from './components/HomeDashboard';
+import { AboutUs } from './components/AboutUs';
+import { Services } from './components/Services';
+import { Careers } from './components/careers';
+import { ContactUs } from './components/Contact';
 import { ChatAssistant } from './components/ChatAssistant';
 import { DiseaseDetection } from './components/DiseaseDetection';
 import { MarketPrices } from './components/MarketPrices';
@@ -61,6 +65,34 @@ export default function App() {
             setActiveTab={setActiveTab}
             currentLanguage={currentLanguage}
             farmer={farmer}
+          />
+        )}
+
+        {activeTab === 'about' && (
+          <AboutUs
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'services' && (
+          <Services
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'careers' && (
+          <Careers
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'contact' && (
+          <ContactUs
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
           />
         )}
 

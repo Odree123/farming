@@ -9,7 +9,10 @@ import {
   Menu, 
   X,
   ChevronDown,
-  User
+  User,
+  Info,
+  Briefcase,
+  Award
 } from 'lucide-react';
 import { LanguageCode, FarmerProfile } from '../types';
 import { SUPPORTED_LANGUAGES, getTranslation } from '../data/translations';
@@ -37,10 +40,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'home', label: t.nav.home, icon: Sprout },
-    { id: 'chat', label: t.nav.chat, icon: MessageSquareText, badge: 'AI' },
-    { id: 'disease', label: t.nav.disease, icon: ScanLine, badge: 'Vision' },
-    { id: 'prices', label: t.nav.prices, icon: TrendingUp },
-    { id: 'marketplace', label: t.nav.marketplace, icon: ShoppingBag },
+    { id: 'about', label: t.nav.about, icon: Info },
+    { id: 'services', label: t.nav.services, icon: Briefcase },
+    { id: 'careers', label: t.nav.careers, icon: Award },
+    { id: 'contact', label: t.nav.contact, icon: MessageSquareText },
+
   ];
 
   return (
@@ -87,11 +91,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-saf-300'}`} />
                   <span>{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] bg-saf-700 text-amber-300 px-1.5 py-0.2 rounded font-mono font-bold">
-                      {item.badge}
-                    </span>
-                  )}
                 </button>
               );
             })}
@@ -175,11 +174,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <Icon className="w-5 h-5 text-saf-400" />
                   <span>{item.label}</span>
                 </div>
-                {item.badge && (
-                  <span className="text-xs bg-saf-700 text-amber-300 px-2 py-0.5 rounded font-mono">
-                    {item.badge}
-                  </span>
-                )}
               </button>
             );
           })}

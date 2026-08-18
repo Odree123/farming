@@ -33,11 +33,16 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.about}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.services}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.careers}</span></li>
               <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.home}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.chat}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.disease}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.prices}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.marketplace}</span></li>
+                <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.contact}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.chat.title}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.disease.title}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.prices.title}</span></li>
+              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.marketplace.title}</span></li>
+              
             </ul>
           </div>
 
@@ -56,6 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
             <ul className="space-y-2 text-stone-500">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-saf-500" />
+                
                 <span>+254 711 234 567</span>
               </li>
               <li className="flex items-center gap-2">

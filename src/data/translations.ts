@@ -16,11 +16,11 @@ export interface TranslationDict {
   tagline: string;
   nav: {
     home: string;
-    chat: string;
-    disease: string;
-    prices: string;
-    marketplace: string;
+    about: string;
+    services: string;
+    careers: string;
     ussd: string;
+    contact: string;
   };
   home: {
     heroTitle: string;
@@ -122,11 +122,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Msaidizi Mahiri wa Kilimo kwa Wakulima wa Kenya',
     nav: {
       home: 'Nyumbani',
-      chat: 'Mshauri wa AI',
-      disease: 'Kagua Magonjwa',
-      prices: 'Bei za Masoko',
-      marketplace: 'Soko la Pembejeo',
+      about: 'Kuhusu Sisi',
+      services: 'Huduma Zetu',
+      careers: 'Ajira',
       ussd: 'Piga USSD',
+      contact: 'Wasiliana',
     },
     home: {
       heroTitle: 'Kilimo Bora, Mavuno Mengi, Faida Zaidi',
@@ -232,16 +232,16 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Multi-Channel AI Agricultural Assistant for Kenyan Farmers',
     nav: {
       home: 'Home',
-      chat: 'AI Advisor',
-      disease: 'Disease Scanner',
-      prices: 'Market Prices',
-      marketplace: 'Agrovet Shop',
+      about: 'About Us',
+      services: 'Our Services',
+      careers: 'Careers',
       ussd: 'Dial USSD',
+      contact: 'Contact',
     },
     home: {
       heroTitle: 'Smart Farming, Higher Yields, Better Profits',
       heroSubtitle: 'Consult Kenya’s specialized AI Agronomist in English, Swahili or your vernacular. Get crop advice, instant leaf disease diagnosis, and live market commodity prices.',
-      askAiBtn: 'Chat with AI Agronomist',
+      askAiBtn: 'Chat with SautiFarm AI',
       scanDiseaseBtn: 'Scan Crop Leaf Photo',
       viewPricesBtn: 'Check Today’s Prices',
       buyInputsBtn: 'Shop Seeds & Fertilizers',
@@ -255,7 +255,7 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       videoTutorialsTitle: 'Video Tutorials',
     },
     chat: {
-      title: 'SautiFarm AI Agronomist',
+      title: 'SautiFarm AI ',
       placeholder: 'Ask any farming question or click microphone to speak...',
       listening: 'Listening... speak clearly now',
       recordingVoice: 'Recording audio note...',
@@ -272,7 +272,7 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       uploadImagePrompt: 'Attach plant or leaf image',
     },
     disease: {
-      title: 'AI Plant Disease & Pest Vision Diagnosis',
+      title: 'Disease and Pest Scanner',
       subtitle: 'Upload or snap a photo of any damaged plant leaf or crop. Gemini Vision AI diagnoses the condition and suggests both organic and certified chemical remedies.',
       uploadPrompt: 'Upload a clear leaf photo here',
       dragDrop: 'Drag and drop an image or click to browse',
@@ -289,7 +289,7 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       buyTreatments: 'Buy Treatment on Marketplace',
     },
     prices: {
-      title: 'Kenya Agricultural Commodity Price Index',
+      title: 'Market Prices for Kenyan Crops & Commodities',
       subtitle: 'Real-time wholesale and retail prices tracked across Nairobi, Mombasa, Kisumu, Nakuru, and Eldoret.',
       filterCrop: 'Filter Crop',
       filterMarket: 'Filter Market',
@@ -302,7 +302,7 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       priceAlert: 'Set SMS Price Alert',
     },
     marketplace: {
-      title: 'Certified Farm Inputs & Agrovet Marketplace',
+      title: 'Marketplace',
       subtitle: 'Buy genuine KEPHIS-certified seeds, Yara/DAP fertilizers, sprayers, and solar irrigation with M-Pesa.',
       searchPlaceholder: 'Search seeds, fertilizers, pesticides, drip kits...',
       allCategories: 'All Categories',
@@ -342,11 +342,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Mũteithia wa Ũrĩmi wa AI thĩinĩ wa Kenya',
     nav: {
       home: 'Mũciĩ',
-      chat: 'Bwana Shamba AI',
-      disease: 'Thuthuria Mĩrimũ',
-      prices: 'Thogora wa Thoko',
-      marketplace: 'Thoko ya Mbeũ',
+      about: 'Kũrĩa Ũcio',
+      services: 'Wĩ Witũ',
+      careers: 'Wĩora',
       ussd: 'Hũũra USSD',
+      contact: 'Ĩraa',
     },
     home: {
       heroTitle: 'Ũrĩmi Mũgaacĩru, Maciaro Maingĩ, Uumithio Mũnene',
@@ -451,11 +451,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Jakony Pur mar AI ne Japur mag Kenya',
     nav: {
       home: 'Pacho',
-      chat: 'Japuonj AI',
-      disease: 'Ng\'iyo Tuoche',
-      prices: 'Nengo Chiro',
-      marketplace: 'Chiro Koth',
+      about: 'Kuom Wa',
+      services: 'Jothieth Wa',
+      careers: 'Tije',
       ussd: 'Goyo USSD',
+      contact: 'Nong\'o',
     },
     home: {
       heroTitle: 'Pur Maber, Cham Mang\'eny, Ohala Maduong\'',
@@ -560,11 +560,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Omukonyi wo Vurimi wo AI mu Kenya',
     nav: {
       home: 'Ingo',
-      chat: 'Omwalimu AI',
-      disease: 'Lola Malwaye',
-      prices: 'Ibeeyi yo Siro',
-      marketplace: 'Siro ye Imbeu',
+      about: 'Khukhulaho',
+      services: 'Jothieth Jie',
+      careers: 'Mulimo',
       ussd: 'Goba USSD',
+      contact: 'Somboraa',
     },
     home: {
       heroTitle: 'Oburimi Vwelukhu, Emikunda Minji, Omwando',
@@ -669,11 +669,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Kiptaiyat ne Bo AI ne Tokochin Kipsoiyotab Kenya',
     nav: {
       home: 'Gaa',
-      chat: 'Kiptaiyat AI',
-      disease: 'Koger Mionwogik',
-      prices: 'Taitab Siro',
-      marketplace: 'Siroitab Keswek',
+      about: 'Koile En',
+      services: 'Serikali Ino',
+      careers: 'Totie',
       ussd: 'Kwir USSD',
+      contact: 'Kontak',
     },
     home: {
       heroTitle: 'Kapkorenet ne Nyolu, Robto ne Chang, Rabisiek',
@@ -778,11 +778,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Mũtetheesya wa Ũĩmi wa AI wa Aĩmi ma Kenya',
     nav: {
       home: 'Mũsyĩ',
-      chat: 'Mwalimũ AI',
-      disease: 'Kũsũvĩa Mawau',
-      prices: 'Thooa wa Ndũnyũ',
-      marketplace: 'Ndũnyũ ya Mbeũ',
+      about: 'Kũthi Wĩ',
+      services: 'Utuu Wĩ',
+      careers: 'Mũlimu',
       ussd: 'Kũna USSD',
+      contact: 'Mũtumia',
     },
     home: {
       heroTitle: 'Ũĩmi Mũseo, Ngetha Mbingĩ, Ũthwii',
@@ -887,11 +887,11 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     tagline: 'Kaaliyaha Beeraha ee AI ee Beeralayda Kenya',
     nav: {
       home: 'Guriga',
-      chat: 'La-taliyaha AI',
-      disease: 'Baar Cudurrada',
-      prices: 'Qiimaha Suuqa',
-      marketplace: 'Suuqa Beeraha',
+      about: 'Naga Sahanoo',
+      services: 'Khidmadaadka Naga',
+      careers: 'Shaqo',
       ussd: 'Wac USSD',
+      contact: 'Xaqiiji',
     },
     home: {
       heroTitle: 'Beerasho Casri ah, Waxsoosaar Badan, Faa\'iido Wanaagsan',

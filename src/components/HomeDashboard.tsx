@@ -85,10 +85,10 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { id: 'chat', label: t.nav.chat, desc: 'Ongea na Bwana Shamba kwa sauti au maandishi ya Kiswahili & lugha 6+ za kienyeji.', icon: MessageSquareText, color: 'emerald' },
-          { id: 'disease', label: t.nav.disease, desc: 'Piga picha ya jani lililoathirika. AI inakagua ugonjwa na kupendekeza dawa sahihi.', icon: ScanLine, color: 'amber' },
-          { id: 'prices', label: t.nav.prices, desc: 'Bei za leo masoko ya Wakulima, Kongowea, Eldoret na Kisumu kwa mazao yote.', icon: TrendingUp, color: 'blue' },
-          { id: 'marketplace', label: t.nav.marketplace, desc: 'Mbegu zilizoidhinishwa na KEPHIS, mbolea, na madawa kwa bei nafuu.', icon: ShoppingBag, color: 'rose' },
+          { id: 'about', label: t.nav.about, desc: 'Pata maelezo kuhusu SautiFarm na jinsi tunavyosaidia wakulima wa Kenya.', icon: MessageSquareText, color: 'emerald' },
+          { id: 'services', label: t.nav.services, desc: 'Tafakari huduma zetu za AI na teknolohia kwa wakulima.', icon: ScanLine, color: 'amber' },
+          { id: 'careers', label: t.nav.careers, desc: 'Jiunge na timu yetu na tumaini kujenga kinema cha kilimo.', icon: TrendingUp, color: 'blue' },
+          { id: 'home', label: t.nav.home, desc: 'Kurudi nyumbani na kupata mwanzo wa haraka kwa huduma zote.', icon: ShoppingBag, color: 'rose' },
         ].map((item) => {
           const Icon = item.icon;
           const colorMap: Record<string, { bg: string; text: string }> = {
