@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   ScanLine, 
   UploadCloud, 
@@ -35,8 +35,13 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
   const [plantType, setPlantType] = useState<string>('Maize / Mahindi');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [diagnosis, setDiagnosis] = useState<DiseaseDiagnosis | null>(null);
+  const [showCamera, setShowCamera] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const cameraStreamRef = useRef<MediaStream | null>(null);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -50,6 +55,69 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
       reader.readAsDataURL(file);
     }
   };
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment' },
+      });
+      cameraStreamRef.current = stream;
+      setShowCamera(true);
+    } catch (err) {
+      console.warn('Camera access unavailable, falling back to file picker:', err);
+      cameraInputRef.current?.click();
+    }
+  };
+
+  useEffect(() => {
+    if (showCamera && cameraStreamRef.current && videoRef.current) {
+      videoRef.current.srcObject = cameraStreamRef.current;
+      videoRef.current
+        .play()
+        .catch((err) => console.warn('Video play failed:', err));
+    }
+  }, [showCamera]);
+
+  const stopCamera = () => {
+    if (cameraStreamRef.current) {
+      cameraStreamRef.current.getTracks().forEach((track) => track.stop());
+      cameraStreamRef.current = null;
+    }
+    setShowCamera(false);
+  };
+
+  const capturePhoto = async () => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    if (!video || !canvas) return;
+
+    if (video.videoWidth === 0) {
+      await new Promise((resolve) => {
+        video.addEventListener('loadedmetadata', resolve, { once: true });
+        setTimeout(resolve, 3000);
+      });
+    }
+
+    if (video.videoWidth === 0 || video.videoHeight === 0) return;
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const base64 = canvas.toDataURL('image/jpeg', 0.9);
+    stopCamera();
+    setSelectedImage(base64);
+    analyzeImage(base64);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (cameraStreamRef.current) {
+        cameraStreamRef.current.getTracks().forEach((track) => track.stop());
+        cameraStreamRef.current = null;
+      }
+    };
+  }, []);
 
   const handleSampleClick = (sample: DiseaseDiagnosis) => {
     setSelectedImage(null);
@@ -161,6 +229,15 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
             className="hidden"
           />
 
+          <input
+            type="file"
+            ref={cameraInputRef}
+            onChange={handleFileUpload}
+            accept="image/*"
+            capture="environment"
+            className="hidden"
+          />
+
           {!selectedImage ? (
             <div
               onClick={() => fileInputRef.current?.click()}
@@ -175,6 +252,10 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
               </div>
               <button
                 type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  startCamera();
+                }}
                 className="inline-flex items-center gap-2 bg-saf-800 hover:bg-saf-700 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow"
               >
                 <Camera className="w-4 h-4 text-amber-300" />
@@ -345,8 +426,39 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
               </div>
             </div>
           )}
-        </div>
       </div>
     </div>
-  );
+
+    {showCamera && (
+      <div className="fixed inset-0 z-50 bg-stone-950 flex flex-col items-center justify-center">
+        <div className="relative w-full max-w-lg aspect-video">
+          <video
+            ref={videoRef}
+            playsInline
+            muted
+            autoPlay
+            className="w-full h-full rounded-xl object-cover bg-black"
+          />
+          <canvas ref={canvasRef} className="hidden" />
+        </div>
+        <div className="flex items-center gap-6 mt-6">
+          <button
+            type="button"
+            onClick={stopCamera}
+            className="px-4 py-2 text-stone-300 hover:text-white text-sm font-medium"
+          >
+            Ghairi
+          </button>
+          <button
+            type="button"
+            onClick={capturePhoto}
+            className="w-16 h-16 rounded-full bg-amber-400 hover:bg-amber-300 text-stone-900 shadow-lg flex items-center justify-center"
+          >
+            <Camera className="w-7 h-7" />
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+);
 };

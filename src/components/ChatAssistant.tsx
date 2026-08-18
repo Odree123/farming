@@ -254,7 +254,17 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     if ('speechSynthesis' in window) {
       const cleanText = text.replace(/[*_#]/g, '');
       const utterance = new SpeechSynthesisUtterance(cleanText);
-      utterance.lang = currentLanguage === 'en' ? 'en-KE' : 'sw-KE';
+      const langMap: Record<string, string> = {
+        en: 'en-KE',
+        sw: 'sw-KE',
+        ki: 'ki-KE',
+        luo: 'luo-KE',
+        luh: 'luh-KE',
+        kal: 'kal-KE',
+        kam: 'kam-KE',
+        som: 'so-KE',
+      };
+      utterance.lang = langMap[currentLanguage] || 'en-KE';
       utterance.rate = 0.95;
 
       utterance.onend = () => setAudioPlayingId(null);

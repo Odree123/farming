@@ -35,8 +35,14 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
               <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.nav.home}</button></li>
-<li><button onClick={() => setActiveTab('prices')} className="hover:text-amber-400 transition">{t.nav.prices}</button></li>
+              <li><button onClick={() => setActiveTab('prices')} className="hover:text-amber-400 transition">{t.nav.prices}</button></li>
               <li><button onClick={() => setActiveTab('marketplace')} className="hover:text-amber-400 transition">{t.nav.marketplace}</button></li>
+              <li><button onClick={() => setActiveTab('about')} className="hover:text-amber-400 transition">{t.nav.about}</button></li>
+              <li><button onClick={() => setActiveTab('about')} className="hover:text-amber-400 transition">{t.nav.aboutUs}</button></li>
+              <li><button onClick={() => setActiveTab('services')} className="hover:text-amber-400 transition">{t.nav.services}</button></li>
+              <li><button onClick={() => setActiveTab('careers')} className="hover:text-amber-400 transition">{t.nav.careers}</button></li>
+              <li><button onClick={() => setActiveTab('contact')} className="hover:text-amber-400 transition">{t.nav.contact}</button></li>
+              <li><button onClick={() => setActiveTab('disease')} className="hover:text-amber-400 transition">{t.disease.title}</button></li>
             </ul>
           </div>
 
@@ -46,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
               <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.storiesTitle}</button></li>
               <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.cropCalendarTitle}</button></li>
               <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.videoTutorialsTitle}</button></li>
-              <li><button onClick={() => setActiveTab('informationhub')} className="hover:text-amber-400 transition">KALRO Guidelines</button></li>
+              <li><button onClick={() => setActiveTab('informationhub')} className="hover:text-amber-400 transition">{t.nav.informationHub}</button></li>
             </ul>
           </div>
 
@@ -55,6 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
             <ul className="space-y-2 text-stone-500">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-saf-500" />
+                
                 <span>+254 711 234 567</span>
               </li>
               <li className="flex items-center gap-2">

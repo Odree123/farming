@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Sprout, 
   MessageSquareText, 
-  ScanLine, 
   TrendingUp, 
   ShoppingBag, 
   Globe, 
@@ -10,7 +9,10 @@ import {
   X,
   ChevronDown,
   User,
-  MoreHorizontal
+  MoreHorizontal,
+  Info,
+  Briefcase,
+  Award
 } from 'lucide-react';
 import { LanguageCode, FarmerProfile } from '../types';
 import { SUPPORTED_LANGUAGES, getTranslation } from '../data/translations';
@@ -39,18 +41,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'home', label: t.nav.home, icon: Sprout },
-    { id: 'prices', label: t.nav.prices, icon: TrendingUp },
-    { id: 'marketplace', label: t.nav.marketplace, icon: ShoppingBag },
+    { id: 'about', label: t.nav.about, icon: Info },
+    { id: 'services', label: t.nav.services, icon: Briefcase },
+    { id: 'careers', label: t.nav.careers, icon: Award },
+    { id: 'contact', label: t.nav.contact, icon: MessageSquareText },
   ];
 
   const moreNavItems = [
-    { id: 'about', label: t.nav.aboutUs },
-    { id: 'services', label: t.nav.services },
+    { id: 'prices', label: t.nav.prices },
+    { id: 'marketplace', label: t.nav.marketplace },
     { id: 'investors', label: t.nav.investors },
-    { id: 'careers', label: t.nav.careers },
-    { id: 'contact', label: t.nav.contact },
     { id: 'informationhub', label: t.nav.informationHub },
     { id: 'devportal', label: t.nav.devPortal },
+    { id: 'disease', label: t.nav.disease },
   ];
 
   const isMoreActive = moreNavItems.some(item => item.id === activeTab);
@@ -91,11 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isActive
-                      ? 'bg-saf-800 text-amber-300 shadow-inner'
-                      : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'
-                  }`}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${isActive ? 'bg-saf-800 text-amber-300 shadow-inner' : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'}`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-saf-300'}`} />
                   <span>{item.label}</span>
@@ -106,11 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="relative">
               <button
                 onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isMoreActive
-                    ? 'bg-saf-800 text-amber-300 shadow-inner'
-                    : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'
-                }`}
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${isMoreActive ? 'bg-saf-800 text-amber-300 shadow-inner' : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'}`}
               >
                 <MoreHorizontal className={`w-4 h-4 ${isMoreActive ? 'text-amber-300' : 'text-saf-300'}`} />
                 <span>{t.nav.more}</span>
@@ -133,9 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             setActiveTab(item.id);
                             setMoreMenuOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${
-                            isActive ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'
-                          }`}
+                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${isActive ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'}`}
                         >
                           <span>{item.label}</span>
                           {isActive && (
@@ -179,9 +172,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             setLanguage(lang.code);
                             setLangMenuOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${
-                            currentLanguage === lang.code ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'
-                          }`}
+                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${currentLanguage === lang.code ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'}`}
                         >
                           <span className="flex items-center gap-2">
                             <span className="text-base">{lang.flagEmoji}</span>
@@ -220,9 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setActiveTab(item.id);
                   setMobileMenuOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${
-                  isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'
-                }`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'}`}
               >
                 <div className="flex items-center gap-3">
                   <Icon className="w-5 h-5 text-saf-400" />
@@ -243,9 +232,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${
-                    isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'
-                  }`}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'}`}
                 >
                   <span>{item.label}</span>
                   {isActive && (

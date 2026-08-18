@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HomeDashboard } from './components/HomeDashboard';
+import { AboutUs } from './components/AboutUs';
+import { Services } from './components/Services';
+import { Careers } from './components/Careers';
+import { ContactUs } from './components/Contact';
 import { ChatAssistant } from './components/ChatAssistant';
 import { MarketPrices } from './components/MarketPrices';
 import { Marketplace } from './components/Marketplace';
 import { ProductModal } from './components/ProductModal';
-import { AboutUs } from './components/AboutUs';
-import { ContactUs } from './components/Contact';
 import { DevPortal } from './components/DevPortal';
 import { InformationHub } from './components/InformationHub';
 import { Investors } from './components/Investors';
-import { Services } from './components/Services';
-import { Careers } from './components/careers';
 import { Footer } from './components/Footer';
 import { LanguageCode, ProductItem, FarmerProfile } from './types';
 import { getTranslation } from './data/translations';
 import { Sprout, MessageSquareText } from 'lucide-react';
+import { DiseaseDetection } from './components/DiseaseDetection';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -88,6 +89,34 @@ export default function App() {
           />
         )}
 
+        {activeTab === 'about' && (
+          <AboutUs
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'services' && (
+          <Services
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'careers' && (
+          <Careers
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'contact' && (
+          <ContactUs
+            currentLanguage={currentLanguage}
+            setActiveTab={setActiveTab}
+          />
+        )}
+
         {activeTab === 'prices' && (
           <MarketPrices currentLanguage={currentLanguage} />
         )}
@@ -99,26 +128,17 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'about' && (
-          <AboutUs currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
-        )}
-        {activeTab === 'services' && (
-          <Services currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
-        )}
         {activeTab === 'investors' && (
           <Investors currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
-        )}
-        {activeTab === 'careers' && (
-          <Careers currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
-        )}
-        {activeTab === 'contact' && (
-          <ContactUs currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
         )}
         {activeTab === 'devportal' && (
           <DevPortal currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
         )}
         {activeTab === 'informationhub' && (
           <InformationHub currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
+        )}
+        {activeTab === 'disease' && (
+          <DiseaseDetection currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
         )}
       </main>
 
@@ -156,4 +176,4 @@ export default function App() {
       </button>
     </div>
   );
-}
+};
