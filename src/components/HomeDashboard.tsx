@@ -83,39 +83,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { id: 'about', label: t.nav.about, desc: 'Pata maelezo kuhusu SautiFarm na jinsi tunavyosaidia wakulima wa Kenya.', icon: MessageSquareText, color: 'emerald' },
-          { id: 'services', label: t.nav.services, desc: 'Tafakari huduma zetu za AI na teknolohia kwa wakulima.', icon: ScanLine, color: 'amber' },
-          { id: 'careers', label: t.nav.careers, desc: 'Jiunge na timu yetu na tumaini kujenga kinema cha kilimo.', icon: TrendingUp, color: 'blue' },
-          { id: 'home', label: t.nav.home, desc: 'Kurudi nyumbani na kupata mwanzo wa haraka kwa huduma zote.', icon: ShoppingBag, color: 'rose' },
-        ].map((item) => {
-          const Icon = item.icon;
-          const colorMap: Record<string, { bg: string; text: string }> = {
-            emerald: { bg: 'bg-emerald-100', text: 'text-emerald-700' },
-            amber: { bg: 'bg-amber-100', text: 'text-amber-700' },
-            blue: { bg: 'bg-sky-100', text: 'text-sky-700' },
-            rose: { bg: 'bg-rose-100', text: 'text-rose-700' },
-          };
-          const colors = colorMap[item.color] || colorMap.emerald;
-
-          return (
-            <div
-              key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
-              className="group cursor-pointer bg-white p-5 rounded-2xl border border-stone-200/80 hover:border-saf-500 shadow-sm hover:shadow-md transition duration-200"
-            >
-              <div className={`w-10 h-10 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center mb-3 group-hover:scale-110 transition`}>
-                <Icon className="w-5 h-5" />
-              </div>
-              <h3 className="text-sm font-bold text-stone-900 mb-1">{item.label}</h3>
-              <p className="text-xs text-stone-500 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+     
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-5 bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm space-y-4">
