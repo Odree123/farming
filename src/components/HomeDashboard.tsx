@@ -80,6 +80,11 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <span>{t.home.scanDiseaseBtn}</span>
             </button>
           </div>
+
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-saf-200/80">
+            <PhoneCall className="w-3.5 h-3.5" />
+            <span>{t.home.quickDialUssd}</span>
+          </div>
         </div>
       </div>
 

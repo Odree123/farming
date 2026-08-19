@@ -5,7 +5,7 @@ import { getTranslation } from '../data/translations';
 
 interface FooterProps {
   currentLanguage: LanguageCode;
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  setActiveTab: (tab: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab }) => {
@@ -63,10 +63,10 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.resources}</h4>
             <ul className="space-y-2 text-stone-500">
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.storiesTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.cropCalendarTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.home.videoTutorialsTitle}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">KALRO Guidelines</span></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.storiesTitle}</button></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.cropCalendarTitle}</button></li>
+              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.videoTutorialsTitle}</button></li>
+              <li><button onClick={() => setActiveTab('informationhub')} className="hover:text-amber-400 transition">{t.nav.informationHub}</button></li>
             </ul>
           </div>
 
@@ -75,7 +75,6 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
             <ul className="space-y-2 text-stone-500">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-saf-500" />
-                
                 <span>+254 711 234 567</span>
               </li>
               <li className="flex items-center gap-2">

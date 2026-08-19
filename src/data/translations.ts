@@ -20,7 +20,15 @@ export interface TranslationDict {
     services: string;
     careers: string;
     ussd: string;
+    more: string;
+    aboutUs: string;
+    investors: string;
     contact: string;
+    prices: string;
+    marketplace: string;
+    devPortal: string;
+    informationHub: string;
+    disease: string;
   };
   home: {
     heroTitle: string;
@@ -49,6 +57,8 @@ export interface TranslationDict {
     speakResponse: string;
     stopAudio: string;
     uploadImagePrompt: string;
+    modeChat: string;
+    modeDiseaseScan: string;
   };
   disease: {
     title: string;
@@ -96,6 +106,28 @@ export interface TranslationDict {
     whatsappSeller: string;
     callSeller: string;
   };
+  sections: {
+    homeBadge: string;
+    servicesAdvice: string;
+    servicesConsultancy: string;
+    servicesModelDev: string;
+    servicesProjects: string;
+    aboutUsWhoWeAre: string;
+    aboutUsJourney: string;
+    aboutUsLeadership: string;
+    aboutUsStrategy: string;
+    aboutUsCsr: string;
+    aboutUsAwards: string;
+    aboutUsPartners: string;
+    hubNews: string;
+    hubPress: string;
+    hubSustainability: string;
+    hubFaqs: string;
+    hubEvents: string;
+    investorsInfo: string;
+    investorsReports: string;
+    investorsGovernance: string;
+  };
   footer: {
     quickLinks: string;
     resources: string;
@@ -126,7 +158,15 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       services: 'Huduma Zetu',
       careers: 'Ajira',
       ussd: 'Piga USSD',
+      more: 'Zaidi',
+      aboutUs: 'Kuhusu Sisi',
+      investors: 'Wawekezaji',
       contact: 'Wasiliana',
+      prices: 'Bei za Masoko',
+      marketplace: 'Soko la Pembejeo',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Ugonjwa wa Mimea',
     },
     home: {
       heroTitle: 'Kilimo Bora, Mavuno Mengi, Faida Zaidi',
@@ -160,6 +200,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soma kwa Sauti',
       stopAudio: 'Simamisha Sauti',
       uploadImagePrompt: 'Weka picha ya mmea au jani',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Utambuzi wa Magonjwa ya Mimea kwa AI',
@@ -207,6 +249,28 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'Wasiliana kwa WhatsApp',
       callSeller: 'Piga Simu Muuzaji',
     },
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Ushauri wa Kilimo',
+      servicesConsultancy: 'Ushauri wa Kitaalamu',
+      servicesModelDev: 'Ujenzi wa Mifumo',
+      servicesProjects: 'Miradi',
+      aboutUsWhoWeAre: 'Sisi Ni Nani',
+      aboutUsJourney: 'Safari Yetu',
+      aboutUsLeadership: 'Uongozi',
+      aboutUsStrategy: 'Mikakati ya Kampuni',
+      aboutUsCsr: 'UWajibikaji wa Kijamii',
+      aboutUsAwards: 'Tuzo na Vyeti',
+      aboutUsPartners: 'Washirika',
+      hubNews: 'Habari na Taarifa',
+      hubPress: 'Taarifa kwa Vyombo',
+      hubSustainability: 'Ustawi wa Mazingira',
+      hubFaqs: 'Maswali Yanayoulizwa Sana',
+      hubEvents: 'Matukio',
+      investorsInfo: 'Taarifa kwa Wawekezaji',
+      investorsReports: 'Ripoti za Kifedha',
+      investorsGovernance: 'Utawala wa Kampuni',
+    },
     footer: {
       quickLinks: 'Kiungo Muhimu',
       resources: 'Rasilimali',
@@ -236,7 +300,15 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       services: 'Our Services',
       careers: 'Careers',
       ussd: 'Dial USSD',
+      more: 'More',
+      aboutUs: 'About Us',
+      investors: 'Investors',
       contact: 'Contact',
+      prices: 'Market Prices',
+      marketplace: 'Agrovet Shop',
+      devPortal: 'Dev Portal',
+      informationHub: 'Information Hub',
+      disease: 'Disease Scanner',
     },
     home: {
       heroTitle: 'Smart Farming, Higher Yields, Better Profits',
@@ -270,6 +342,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Read Aloud',
       stopAudio: 'Stop Audio',
       uploadImagePrompt: 'Attach plant or leaf image',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Disease and Pest Scanner',
@@ -317,6 +391,28 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Seller',
       callSeller: 'Call Seller',
     },
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Quick Links',
       resources: 'Resources',
@@ -343,10 +439,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Mũciĩ',
       about: 'Kũrĩa Ũcio',
-      services: 'Wĩ Witũ',
-      careers: 'Wĩora',
+      services: 'Huduma',
+      careers: 'Mawira',
       ussd: 'Hũũra USSD',
+      more: 'Makĩria',
+      aboutUs: 'Igũrũ Rietu',
+      investors: 'Wawekezaji',
       contact: 'Ĩraa',
+      prices: 'Thogora wa Masoko',
+      marketplace: 'Soko la Pembejeo',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Mũrimũ wa Mĩmera',
     },
     home: {
       heroTitle: 'Ũrĩmi Mũgaacĩru, Maciaro Maingĩ, Uumithio Mũnene',
@@ -379,6 +483,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Thoma na Mũgambo',
       stopAudio: 'Rũgama',
       uploadImagePrompt: 'Tũma mbica ya ihuti',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Kũmenya Mĩrimũ ya Mĩmera na Mbica',
@@ -426,6 +532,28 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Muuzi',
       callSeller: 'Hũra Simu Muuzi',
     },
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Link cia Hara hara',
       resources: 'Risorsa',
@@ -452,10 +580,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Pacho',
       about: 'Kuom Wa',
-      services: 'Jothieth Wa',
-      careers: 'Tije',
+      services: 'Tij',
+      careers: 'Tij',
       ussd: 'Goyo USSD',
-      contact: 'Nong\'o',
+      more: 'Mok',
+      aboutUs: 'Kodwa',
+      investors: 'Jou Kony',
+      contact: "Nong'o",
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Tuoche mag Cham',
+      prices: 'Nengo',
+      marketplace: 'Chiro',
     },
     home: {
       heroTitle: 'Pur Maber, Cham Mang\'eny, Ohala Maduong\'',
@@ -488,6 +624,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Som gi Dwol',
       stopAudio: 'Geng\' Dwol',
       uploadImagePrompt: 'Ket picha mar it yath',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Fwenyo Tuoche mag Cham gi AI',
@@ -535,6 +673,29 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Jualo',
       callSeller: 'Luong Jualo',
     },
+
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Retok Mapiyo',
       resources: 'Ngech',
@@ -561,10 +722,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Ingo',
       about: 'Khukhulaho',
-      services: 'Jothieth Jie',
-      careers: 'Mulimo',
+      services: 'Tij',
+      careers: 'Tij',
       ussd: 'Goba USSD',
+      more: 'Efia',
+      aboutUs: 'Khusi',
+      investors: 'Abahasi',
       contact: 'Somboraa',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Malwaye ka Ebilime',
+      prices: 'Ibeeyi',
+      marketplace: 'Siro',
     },
     home: {
       heroTitle: 'Oburimi Vwelukhu, Emikunda Minji, Omwando',
@@ -597,6 +766,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soma nende Liikana',
       stopAudio: 'Imilila',
       uploadImagePrompt: 'Ruma ifoto ye likondo',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Okhumanya Malwaye ke Ebilime',
@@ -644,6 +815,29 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Omurushi',
       callSeller: 'Hura Simu Omurushi',
     },
+
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Links Shiololi',
       resources: 'Ngech',
@@ -670,10 +864,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Gaa',
       about: 'Koile En',
-      services: 'Serikali Ino',
-      careers: 'Totie',
+      services: 'Tij',
+      careers: 'Tij',
       ussd: 'Kwir USSD',
+      more: 'Kong',
+      aboutUs: 'Kokus',
+      investors: 'Jou Kony',
       contact: 'Kontak',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Mionwogik che bo Mbukusiek',
+      prices: 'Taitab',
+      marketplace: 'Siro',
     },
     home: {
       heroTitle: 'Kapkorenet ne Nyolu, Robto ne Chang, Rabisiek',
@@ -706,6 +908,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Soman eng Kutit',
       stopAudio: 'Kanyis',
       uploadImagePrompt: 'Iyook picha nebo sotet',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Koger Mionwogik che bo Mbukusiek',
@@ -753,6 +957,28 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Che Mius',
       callSeller: 'Cham Simu Che Mius',
     },
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Links che Bo Sogor',
       resources: 'Ngech',
@@ -779,10 +1005,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Mũsyĩ',
       about: 'Kũthi Wĩ',
-      services: 'Utuu Wĩ',
-      careers: 'Mũlimu',
+      services: 'Tij',
+      careers: 'Mawira',
       ussd: 'Kũna USSD',
+      more: 'Makĩria',
+      aboutUs: 'Kũsũvĩa',
+      investors: 'Abahasi',
       contact: 'Mũtumia',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Mawau ma Mĩmera',
+      prices: 'Thooa',
+      marketplace: 'Ndũnyũ',
     },
     home: {
       heroTitle: 'Ũĩmi Mũseo, Ngetha Mbingĩ, Ũthwii',
@@ -815,6 +1049,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Thoma na Wasya',
       stopAudio: 'Tiĩa Wasya',
       uploadImagePrompt: 'Tũma mbica ya itũ',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Kũmanya Mawau ma Mĩmera na AI',
@@ -862,6 +1098,29 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       whatsappSeller: 'WhatsApp Mũusi',
       callSeller: 'Ĩtha Simu Mũusi',
     },
+
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
+    },
     footer: {
       quickLinks: 'Links ya Kw\'onany\'a',
       resources: 'Ngech',
@@ -888,10 +1147,18 @@ export const translations: Record<LanguageCode, TranslationDict> = {
     nav: {
       home: 'Guriga',
       about: 'Naga Sahanoo',
-      services: 'Khidmadaadka Naga',
+      services: 'Adeegyada',
       careers: 'Shaqo',
       ussd: 'Wac USSD',
+      more: 'Dheeraad',
+      aboutUs: 'Nagu Saabsan',
+      investors: 'Maaliyayaasha',
       contact: 'Xaqiiji',
+      devPortal: 'Dev Portal',
+      informationHub: 'Kituo cha Taarifa',
+      disease: 'Cudurrada Geedaha',
+      prices: 'Qiimaha',
+      marketplace: 'Suuqa',
     },
     home: {
       heroTitle: 'Beerasho Casri ah, Waxsoosaar Badan, Faa\'iido Wanaagsan',
@@ -924,6 +1191,8 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       speakResponse: 'Cod ku Akhri',
       stopAudio: 'Jooji Codka',
       uploadImagePrompt: 'Soo rar sawirka caleenta',
+      modeChat: 'Mazungumzo',
+      modeDiseaseScan: 'Kagua Magonjwa',
     },
     disease: {
       title: 'Baarista Cudurrada Geedaha ee AI',
@@ -970,6 +1239,28 @@ export const translations: Record<LanguageCode, TranslationDict> = {
       total: 'Wadarta Guud',
       whatsappSeller: 'WhatsApp Iibsade',
       callSeller: 'Wac Iibsade',
+    },
+    sections: {
+      homeBadge: 'AI Kilimo Smart Engine • Kenya',
+      servicesAdvice: 'Agricultural Advice',
+      servicesConsultancy: 'Agricultural Consultancy',
+      servicesModelDev: 'Model Development',
+      servicesProjects: 'Projects',
+      aboutUsWhoWeAre: 'Who We Are',
+      aboutUsJourney: 'Our Journey',
+      aboutUsLeadership: 'Leadership',
+      aboutUsStrategy: 'Corporate Strategy',
+      aboutUsCsr: 'Corporate Social Responsibility',
+      aboutUsAwards: 'Awards & Certifications',
+      aboutUsPartners: 'Partners',
+      hubNews: 'News & Updates',
+      hubPress: 'Press Releases',
+      hubSustainability: 'Sustainability',
+      hubFaqs: 'FAQs',
+      hubEvents: 'Events',
+      investorsInfo: 'Investor Information',
+      investorsReports: 'Financial Reports',
+      investorsGovernance: 'Corporate Governance',
     },
     footer: {
       quickLinks: 'Laamaasta',

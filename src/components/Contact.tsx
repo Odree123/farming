@@ -42,15 +42,15 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
   };
 
   return (
-    <div className="min-h-screen text-slate-100 bg-[#070b12] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen text-stone-900 bg-stone-50 px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-5xl mx-auto space-y-14">
         
         {/* PAGE HEADER */}
         <div className="text-center max-w-3xl mx-auto space-y-4 pt-4 pb-2">
-          <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-white font-normal">
+          <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-stone-900 font-normal">
             Get in Touch
           </h1>
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed font-sans text-center font-normal px-2">
+          <p className="text-stone-600 text-base sm:text-lg leading-relaxed font-sans text-center font-normal px-2">
             Whether you are a farmer, developer, cooperative, or research partner, we would love to hear from you.
           </p>
         </div>
@@ -58,7 +58,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
         {/* OUR OFFICES */}
         <section id="our-offices" className="space-y-6">
           <div className="text-left">
-            <h2 className="text-2xl sm:text-3xl font-serif text-white font-normal">
+            <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 font-normal">
               Our Offices
             </h2>
           </div>
@@ -67,33 +67,33 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
             {/* Headquarters */}
             <div 
               id="office-card-hq"
-              className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 space-y-4 hover:border-emerald-500/40 transition shadow-xl"
+              className="bg-white border border-stone-200 rounded-2xl p-7 space-y-4 hover:border-saf-500/40 transition shadow-sm"
             >
               <div>
-                <span className="bg-[#082218] border border-emerald-800 text-emerald-400 text-xs font-semibold px-2.5 py-0.5 rounded-md inline-block">
+                <span className="bg-saf-50 border border-saf-200 text-saf-800 text-xs font-semibold px-2.5 py-0.5 rounded-md inline-block">
                   Headquarters
                 </span>
               </div>
               
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white tracking-wide">
+                <h3 className="text-xl font-bold text-stone-900 tracking-wide">
                   Maseno University
                 </h3>
-                <p className="text-stone-300 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   P.O. Box 333-40105, Maseno, Kisumu County, Kenya
                 </p>
               </div>
 
-              <div className="pt-2 space-y-1 text-sm text-stone-300">
+              <div className="pt-2 space-y-1 text-sm text-stone-600">
                 <p className="flex items-center space-x-2">
-                  <span className="text-stone-400">Tel:</span>
-                  <a href="tel:+254713565060" className="text-stone-200 hover:text-emerald-400 font-mono transition">
+                  <span className="text-stone-500">Tel:</span>
+                  <a href="tel:+254713565060" className="text-stone-200 hover:text-saf-800 font-mono transition">
                     +254 713 565060
                   </a>
                 </p>
                 <p className="flex items-center space-x-2">
-                  <span className="text-stone-400">Email:</span>
-                  <a href="mailto:info@sautifarm.co" className="text-stone-200 hover:text-emerald-400 transition">
+                  <span className="text-stone-500">Email:</span>
+                  <a href="mailto:info@sautifarm.co" className="text-stone-200 hover:text-saf-800 transition">
                     info@sautifarm.co
                   </a>
                 </p>
@@ -103,33 +103,33 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
             {/* Field Office */}
             <div 
               id="office-card-field"
-              className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-7 space-y-4 hover:border-emerald-500/40 transition shadow-xl"
+              className="bg-white border border-stone-200 rounded-2xl p-7 space-y-4 hover:border-saf-500/40 transition shadow-sm"
             >
               <div>
-                <span className="bg-[#082218] border border-emerald-800 text-emerald-400 text-xs font-semibold px-2.5 py-0.5 rounded-md inline-block">
+                <span className="bg-saf-50 border border-saf-200 text-saf-800 text-xs font-semibold px-2.5 py-0.5 rounded-md inline-block">
                   Field Office
                 </span>
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white tracking-wide">
+                <h3 className="text-xl font-bold text-stone-900 tracking-wide">
                   Field Operations
                 </h3>
-                <p className="text-stone-300 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   Maseno, Kisumu County, Kenya
                 </p>
               </div>
 
-              <div className="pt-2 space-y-1 text-sm text-stone-300">
+              <div className="pt-2 space-y-1 text-sm text-stone-600">
                 <p className="flex items-center space-x-2">
-                  <span className="text-stone-400">Tel:</span>
-                  <a href="tel:+254713565060" className="text-stone-200 hover:text-emerald-400 font-mono transition">
+                  <span className="text-stone-500">Tel:</span>
+                  <a href="tel:+254713565060" className="text-stone-200 hover:text-saf-800 font-mono transition">
                     +254 713 565060
                   </a>
                 </p>
                 <p className="flex items-center space-x-2">
-                  <span className="text-stone-400">Email:</span>
-                  <a href="mailto:info@sautifarm.co" className="text-stone-200 hover:text-emerald-400 transition">
+                  <span className="text-stone-500">Email:</span>
+                  <a href="mailto:info@sautifarm.co" className="text-stone-200 hover:text-saf-800 transition">
                     info@sautifarm.co
                   </a>
                 </p>
@@ -143,13 +143,13 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
           
           {/* LEFT: SEND A MESSAGE FORM */}
           <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-serif text-white font-normal">
+            <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 font-normal">
               Send a Message
             </h2>
 
             {submitted && (
-              <div className="p-4 bg-emerald-950/80 border border-emerald-700/80 rounded-xl flex items-center space-x-3 text-emerald-200 text-sm animate-fadeIn">
-                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+              <div className="p-4 bg-saf-50 border border-saf-200 rounded-xl flex items-center space-x-3 text-saf-800 text-sm animate-fadeIn">
+                <CheckCircle2 className="w-5 h-5 text-saf-800 shrink-0" />
                 <span>Asante! Your message has been received. Our team will get back to you shortly.</span>
               </div>
             )}
@@ -157,7 +157,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* NAME */}
               <div className="space-y-1.5">
-                <label htmlFor="contact-name" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="contact-name" className="block text-xs font-bold text-stone-600 uppercase tracking-wider">
                   NAME
                 </label>
                 <input
@@ -167,13 +167,13 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
                   placeholder="Your name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#0b1320] border border-stone-800/90 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
                 />
               </div>
 
               {/* EMAIL */}
               <div className="space-y-1.5">
-                <label htmlFor="contact-email" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="contact-email" className="block text-xs font-bold text-stone-600 uppercase tracking-wider">
                   EMAIL
                 </label>
                 <input
@@ -183,13 +183,13 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#0b1320] border border-stone-800/90 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
                 />
               </div>
 
               {/* SUBJECT */}
               <div className="space-y-1.5">
-                <label htmlFor="contact-subject" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="contact-subject" className="block text-xs font-bold text-stone-600 uppercase tracking-wider">
                   SUBJECT
                 </label>
                 <input
@@ -198,13 +198,13 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
                   placeholder="How can we help?"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full bg-[#0b1320] border border-stone-800/90 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition"
                 />
               </div>
 
               {/* MESSAGE */}
               <div className="space-y-1.5">
-                <label htmlFor="contact-message" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="contact-message" className="block text-xs font-bold text-stone-600 uppercase tracking-wider">
                   MESSAGE
                 </label>
                 <textarea
@@ -214,7 +214,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
                   placeholder="Your message..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-[#0b1320] border border-stone-800/90 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition resize-y"
+                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-100 placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition resize-y"
                 />
               </div>
 
@@ -224,7 +224,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
                   type="submit"
                   id="btn-send-contact-message"
                   disabled={isSubmitting}
-                  className="px-6 py-2.5 bg-[#10b981] hover:bg-[#059669] text-stone-900 font-bold rounded-lg text-sm transition shadow-lg disabled:opacity-50"
+                  className="px-6 py-2.5 bg-saf-800 hover:bg-saf-700 text-stone-900 font-bold rounded-lg text-sm transition shadow-lg disabled:opacity-50"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -234,7 +234,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
 
           {/* RIGHT: QUICK CONTACT */}
           <div className="lg:col-span-5 space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-serif text-white font-normal">
+            <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 font-normal">
               Quick Contact
             </h2>
 
@@ -242,14 +242,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
               {/* General Inquiries */}
               <div 
                 id="quick-contact-general"
-                className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-5 space-y-1.5 hover:border-emerald-500/40 transition shadow-lg"
+                className="bg-white border border-stone-200 rounded-2xl p-5 space-y-1.5 hover:border-saf-500/40 transition shadow-lg"
               >
                 <h3 className="text-base font-bold text-white">
                   General Inquiries
                 </h3>
                 <a 
                   href="mailto:info@sautifarm.co" 
-                  className="text-stone-300 hover:text-emerald-400 text-sm transition block"
+                  className="text-stone-600 hover:text-saf-800 text-sm transition block"
                 >
                   info@sautifarm.co
                 </a>
@@ -258,14 +258,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
               {/* Developer Support */}
               <div 
                 id="quick-contact-dev"
-                className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-5 space-y-1.5 hover:border-emerald-500/40 transition shadow-lg"
+                className="bg-white border border-stone-200 rounded-2xl p-5 space-y-1.5 hover:border-saf-500/40 transition shadow-lg"
               >
                 <h3 className="text-base font-bold text-white">
                   Developer Support
                 </h3>
                 <a 
                   href="mailto:developers@sautifarm.co" 
-                  className="text-stone-300 hover:text-emerald-400 text-sm transition block"
+                  className="text-stone-600 hover:text-saf-800 text-sm transition block"
                 >
                   developers@sautifarm.co
                 </a>
@@ -274,14 +274,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
               {/* Partnerships */}
               <div 
                 id="quick-contact-partnerships"
-                className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-5 space-y-1.5 hover:border-emerald-500/40 transition shadow-lg"
+                className="bg-white border border-stone-200 rounded-2xl p-5 space-y-1.5 hover:border-saf-500/40 transition shadow-lg"
               >
                 <h3 className="text-base font-bold text-white">
                   Partnerships
                 </h3>
                 <a 
                   href="mailto:partnerships@sautifarm.co" 
-                  className="text-stone-300 hover:text-emerald-400 text-sm transition block"
+                  className="text-stone-600 hover:text-saf-800 text-sm transition block"
                 >
                   partnerships@sautifarm.co
                 </a>
@@ -290,14 +290,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActive
               {/* Media & Press */}
               <div 
                 id="quick-contact-press"
-                className="bg-[#0b1320] border border-stone-800/90 rounded-2xl p-5 space-y-1.5 hover:border-emerald-500/40 transition shadow-lg"
+                className="bg-white border border-stone-200 rounded-2xl p-5 space-y-1.5 hover:border-saf-500/40 transition shadow-lg"
               >
                 <h3 className="text-base font-bold text-white">
                   Media &amp; Press
                 </h3>
                 <a 
                   href="mailto:press@sautifarm.co" 
-                  className="text-stone-300 hover:text-emerald-400 text-sm transition block"
+                  className="text-stone-600 hover:text-saf-800 text-sm transition block"
                 >
                   press@sautifarm.co
                 </a>

@@ -18,7 +18,8 @@ import {
   AlertCircle,
   ShoppingBag,
   TrendingUp,
-  Leaf
+  Leaf,
+  ScanLine
 } from 'lucide-react';
 import { ChatMessage, LanguageCode, FarmerProfile } from '../types';
 import { getTranslation } from '../data/translations';
@@ -27,14 +28,20 @@ interface ChatAssistantProps {
   currentLanguage: LanguageCode;
   farmer: FarmerProfile;
   setActiveTab: (tab: string) => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 export const ChatAssistant: React.FC<ChatAssistantProps> = ({
   currentLanguage,
   farmer,
   setActiveTab,
+  isOpen = true,
+  onClose,
 }) => {
   const t = getTranslation(currentLanguage);
+
+  const [mode, setMode] = useState('chat' as 'chat' | 'disease');
   
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const saved = localStorage.getItem('sautifarm_chat_history');
@@ -47,7 +54,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
       {
         id: 'welcome-msg',
         sender: 'assistant',
-        text: `Habari ${farmer.name || 'Mkulima'}! Mimi ni Bwana Shamba AI wa SautiFarm. 🌾\n\nNiko hapa kukusaidia kwa maswali yote ya kilimo, ukaguzi wa magonjwa ya majani, mbolea bora za kupandia, na bei za mazao masokoni nchini Kenya.\n\nUnaweza kuandika swali, kupakia picha ya mmea, au kubofya kipaza sauti kuongea.`,
+        text: 'Habari ' + (farmer.name || 'Mkulima') + '! Mimi ni Bwana Shamba AI wa SautiFarm. 🌾\n\nNiko hapa kukusaidia kwa maswali yote ya kilimo, ukaguzi wa magonjwa ya majani, mbolea bora za kupandia, na bei za mazao masokoni nchini Kenya.\n\nUnaweza kuandika swali, kupakia picha ya mmea, au kubofya kipaza sauti kuongea.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
     ];
@@ -69,6 +76,8 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     localStorage.setItem('sautifarm_chat_history', JSON.stringify(messages));
   }, [messages]);
+
+  if (!isOpen) return null;
 
   const startRecording = async () => {
     try {
@@ -131,7 +140,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     if (!messageText && !selectedImage) return;
 
     const userMessage: ChatMessage = {
-      id: `msg-${Date.now()}`,
+      id: 'msg-' + Date.now(),
       sender: 'user',
       text: messageText,
       imageUrl: selectedImage || undefined,
@@ -155,7 +164,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
           language: currentLanguage,
           imageUrl: sentImage,
           county: farmer.county || 'Uasin Gishu',
-          farmSize: `${farmer.farmSizeAcres || 2} acres`,
+          farmSize: (farmer.farmSizeAcres || 2) + ' acres',
         }),
       });
 
@@ -166,7 +175,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
       const data = await response.json();
 
       const assistantMessage: ChatMessage = {
-        id: `msg-${Date.now() + 1}`,
+        id: 'msg-' + (Date.now() + 1),
         sender: 'assistant',
         text: data.reply || 'Samahani mkulima, sijapata jibu kwa sasa.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -177,12 +186,57 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     } catch (err) {
       console.error('Error fetching chat response:', err);
       const fallbackReply: ChatMessage = {
-        id: `msg-${Date.now() + 1}`,
+        id: 'msg-' + (Date.now() + 1),
         sender: 'assistant',
-        text: `Asante kwa swali lako kuhusu kilimo. Miongozo ya KALRO inapendekeza:\n\n1. **Kupanda Mahindi:** Tumia mbolea ya DAP au YaraMila Cereal (kilo 50 kwa ekari moja) na mbegu zilizoidhinishwa na KEPHIS (mf. DK777 au H614D).\n2. **Kudhibiti Funza wa Mahindi:** Piga dawa ya Belt 480SC (5ml kwa lita 20) au weka majivu safi ya mti kwenye koni ya jani.\n3. **Ushauri wa Mvua:** Fuatilia utabiri wa kaunti yako kabla ya kunyunyizia madawa.`,
+        text: 'Asante kwa swali lako kuhusu kilimo. Miongozo ya KALRO inapendekeza:\n\n1. **Kupanda Mahindi:** Tumia mbolea ya DAP au YaraMila Cereal (kilo 50 kwa ekari moja) na mbegu zilizoidhinishwa na KEPHIS (mf. DK777 au H614D).\n2. **Kudhibiti Funza wa Mahindi:** Piga dawa ya Belt 480SC (5ml kwa lita 20) au weka majivu safi ya mti kwenye koni ya jani.\n3. **Ushauri wa Mvua:** Fuatilia utabiri wa kaunti yako kabla ya kunyunyizia madawa.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, fallbackReply]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDiseaseDetect = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedImage) return;
+
+    setIsLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+      formData.append('plantType', 'maize');
+
+      const response = await fetch('/api/disease-detect', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Disease detection failed');
+
+      const data = await response.json();
+      const resultText = 'Ugonjwa: ' + data.disease + '\n\nUhakika: ' + data.confidence + '%\n\nDalili:\n' + (data.symptoms?.join('\n') || 'N/A') + '\n\nTiba:\n' + (data.treatment || 'Tafadhali wasiliana na mtaalamu wa kilimo.');
+
+      const assistantMessage: ChatMessage = {
+        id: 'msg-' + (Date.now() + 1),
+        sender: 'assistant',
+        text: resultText,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        language: currentLanguage,
+      };
+
+      setMessages((prev) => [...prev, assistantMessage]);
+      setSelectedImage(null);
+    } catch (err) {
+      console.error('Disease detection error:', err);
+      const errorMessage: ChatMessage = {
+        id: 'msg-' + (Date.now() + 1),
+        sender: 'assistant',
+        text: 'Samahani, kuna tatizo kwa ugunduzi wa magonjwa. Tafadhali jaribu tena baadaye.',
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        language: currentLanguage,
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -200,7 +254,17 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     if ('speechSynthesis' in window) {
       const cleanText = text.replace(/[*_#]/g, '');
       const utterance = new SpeechSynthesisUtterance(cleanText);
-      utterance.lang = currentLanguage === 'en' ? 'en-KE' : 'sw-KE';
+      const langMap: Record<string, string> = {
+        en: 'en-KE',
+        sw: 'sw-KE',
+        ki: 'ki-KE',
+        luo: 'luo-KE',
+        luh: 'luh-KE',
+        kal: 'kal-KE',
+        kam: 'kam-KE',
+        som: 'so-KE',
+      };
+      utterance.lang = langMap[currentLanguage] || 'en-KE';
       utterance.rate = 0.95;
 
       utterance.onend = () => setAudioPlayingId(null);
@@ -257,6 +321,21 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
 
         <div className="flex items-center gap-1">
           <button
+            onClick={() => setMode(mode === 'chat' ? 'disease' : 'chat')}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-saf-700 hover:bg-saf-600 text-saf-100 transition"
+          >
+            {mode === 'chat' ? 'Mazungumzo' : 'Kagua Magonjwa'}
+          </button>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="p-1.5 text-saf-300 hover:text-white hover:bg-saf-800 rounded-lg transition"
+              title="Funga / Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+          <button
             onClick={clearChat}
             className="p-1.5 text-saf-300 hover:text-white hover:bg-saf-800 rounded-lg transition"
             title="Futa Mazungumzo / Clear Chat"
@@ -266,119 +345,173 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
         </div>
       </div>
 
-      <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
-        <span className="text-[11px] font-bold text-stone-500 shrink-0 flex items-center">
-          <Sparkles className="w-3 h-3 mr-1 text-amber-500" /> Uliza:
-        </span>
-        {t.chat.suggestedQuestions.map((q, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleSendMessage(q)}
-            className="shrink-0 bg-white hover:bg-saf-50 border border-stone-200 hover:border-saf-400 text-stone-700 hover:text-saf-900 px-2.5 py-1 rounded-full text-[11px] font-medium transition"
-          >
-            {q}
-          </button>
-        ))}
-      </div>
+      {mode === 'chat' ? (
+        <>
+          <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
+            <span className="text-[11px] font-bold text-stone-500 shrink-0 flex items-center">
+              <Sparkles className="w-3 h-3 mr-1 text-amber-500" /> Uliza:
+            </span>
+            {t.chat.suggestedQuestions.map((q, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSendMessage(q)}
+                className="shrink-0 bg-white hover:bg-saf-50 border border-stone-200 hover:border-saf-400 text-stone-700 hover:text-saf-900 px-2.5 py-1 rounded-full text-[11px] font-medium transition"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50">
-        {messages.map((msg) => {
-          const isUser = msg.sender === 'user';
-          return (
-            <div
-              key={msg.id}
-              className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
-            >
-              <div
-                className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-sm ${
-                  isUser
-                    ? 'bg-amber-500 text-stone-950'
-                    : 'bg-saf-800 text-amber-300'
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50">
+            {messages.map((msg) => {
+              const isUser = msg.sender === 'user';
+              return (
+                <div
+                  key={msg.id}
+                  className={'flex items-start gap-2.5 ' + (isUser ? 'flex-row-reverse' : 'flex-row')}
+                >
+                  <div
+                    className={'w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-sm ' + (isUser ? 'bg-amber-500 text-stone-950' : 'bg-saf-800 text-amber-300')}
+                  >
+                    {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                  </div>
+
+                  <div className={'max-w-[85%] sm:max-w-[75%] space-y-1'}>
+                    <div
+                      className={'p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ' + (isUser ? 'bg-saf-800 text-white rounded-tr-none' : 'bg-white text-stone-800 border border-stone-200/90 rounded-tl-none')}
+                    >
+                      {msg.imageUrl && (
+                        <div className="mb-2.5 rounded-lg overflow-hidden border border-stone-200 max-w-xs">
+                          <img
+                            src={msg.imageUrl}
+                            alt="Crop Attachment"
+                            className="w-full h-auto max-h-48 object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      )}
+
+                      <div className="whitespace-pre-wrap">{msg.text}</div>
+                    </div>
+
+                    <div className={'flex items-center gap-2 text-[10px] text-stone-400 px-1 ' + (isUser ? 'justify-end' : 'justify-start')}>
+                      <span>{msg.timestamp}</span>
+                      {!isUser && (
+                        <>
+                          <span>•</span>
+                          <button
+                            onClick={() => toggleSpeak(msg.id, msg.text)}
+                            className="hover:text-saf-700 font-medium flex items-center gap-1"
+                            title={audioPlayingId === msg.id ? t.chat.stopAudio : t.chat.speakResponse}
+                          >
+                            {audioPlayingId === msg.id ? (
+                              <>
+                                <VolumeX className="w-3 h-3 text-rose-600 animate-pulse" />
+                                <span className="text-rose-600">Simamisha</span>
+                              </>
+                            ) : (
+                              <>
+                                <Volume2 className="w-3 h-3 text-stone-500" />
+                                <span>Sikiliza</span>
+                              </>
+                            )}
+                          </button>
+                          <span>•</span>
+                          <button
+                            onClick={() => copyToClipboard(msg.id, msg.text)}
+                            className="hover:text-saf-700"
+                            title="Copy text"
+                          >
+                            {copiedId === msg.id ? (
+                              <Check className="w-3 h-3 text-saf-600" />
+                            ) : (
+                              <Copy className="w-3 h-3" />
+                            )}
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+            {isLoading && (
+              <div className="flex items-start gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-saf-800 text-amber-300 flex items-center justify-center shrink-0">
+                  <Bot className="w-4 h-4" />
+                </div>
+                <div className="bg-white border border-stone-200/90 rounded-2xl rounded-tl-none p-3.5 shadow-sm text-xs text-stone-600 flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 text-saf-600 animate-spin" />
+                  <span>Bwana Shamba anatafakari ushauri wa kitaalamu...</span>
+                </div>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+        </>
+      ) : (
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50">
+          <div className="bg-white rounded-xl border border-stone-200 p-4">
+            <h3 className="text-sm font-bold text-saf-900 mb-2 flex items-center gap-2">
+              <ScanLine className="w-4 h-4 text-saf-600" />
+              Disease Scan Mode
+            </h3>
+            <p className="text-xs text-stone-600 mb-3">
+              Upload a photo of a plant leaf to detect diseases using AI vision.
+            </p>
+            <form onSubmit={handleDiseaseDetect} className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-stone-700 mb-1">Select Plant</label>
+                <select className="w-full px-3 py-2 text-xs border border-stone-300 rounded-lg focus:border-saf-600 focus:outline-none">
+                  <option value="maize">Maize / Mahindi</option>
+                  <option value="tomato">Tomato / Nyanya</option>
+                  <option value="potato">Potato / Viazi</option>
+                  <option value="beans">Beans / Maharage</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-stone-700 mb-1">Upload Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageSelect}
+                  className="w-full px-3 py-2 text-xs border border-stone-300 rounded-lg focus:border-saf-600 focus:outline-none"
+                />
+              </div>
+              {selectedImage && (
+                <div className="relative">
+                  <img src={selectedImage} alt="Leaf preview" className="w-full h-48 object-cover rounded-lg border border-stone-200" />
+                  <button type="button" onClick={() => setSelectedImage(null)} className="absolute top-2 right-2 p-1 bg-white rounded-full shadow">
+                    <X className="w-4 h-4 text-stone-600" />
+                  </button>
+                </div>
+              )}
+              <button
+                type="submit"
+                disabled={!selectedImage || isLoading}
+                className={`w-full py-2.5 rounded-lg text-sm font-medium transition ${
+                  !selectedImage || isLoading
+                    ? 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                    : 'bg-saf-800 hover:bg-saf-700 text-white shadow-md'
                 }`}
               >
-                {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
-              </div>
-
-              <div className={`max-w-[85%] sm:max-w-[75%] space-y-1`}>
-                <div
-                  className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
-                    isUser
-                      ? 'bg-saf-800 text-white rounded-tr-none'
-                      : 'bg-white text-stone-800 border border-stone-200/90 rounded-tl-none'
-                  }`}
-                >
-                  {msg.imageUrl && (
-                    <div className="mb-2.5 rounded-lg overflow-hidden border border-stone-200 max-w-xs">
-                      <img
-                        src={msg.imageUrl}
-                        alt="Crop Attachment"
-                        className="w-full h-auto max-h-48 object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  )}
-
-                  <div className="whitespace-pre-wrap">{msg.text}</div>
-                </div>
-
-                <div className={`flex items-center gap-2 text-[10px] text-stone-400 px-1 ${isUser ? 'justify-end' : 'justify-start'}`}>
-                  <span>{msg.timestamp}</span>
-                  {!isUser && (
-                    <>
-                      <span>•</span>
-                      <button
-                        onClick={() => toggleSpeak(msg.id, msg.text)}
-                        className="hover:text-saf-700 font-medium flex items-center gap-1"
-                        title={audioPlayingId === msg.id ? t.chat.stopAudio : t.chat.speakResponse}
-                      >
-                        {audioPlayingId === msg.id ? (
-                          <>
-                            <VolumeX className="w-3 h-3 text-rose-600 animate-pulse" />
-                            <span className="text-rose-600">Simamisha</span>
-                          </>
-                        ) : (
-                          <>
-                            <Volume2 className="w-3 h-3 text-stone-500" />
-                            <span>Sikiliza</span>
-                          </>
-                        )}
-                      </button>
-                      <span>•</span>
-                      <button
-                        onClick={() => copyToClipboard(msg.id, msg.text)}
-                        className="hover:text-saf-700"
-                        title="Copy text"
-                      >
-                        {copiedId === msg.id ? (
-                          <Check className="w-3 h-3 text-saf-600" />
-                        ) : (
-                          <Copy className="w-3 h-3" />
-                        )}
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-
-        {isLoading && (
-          <div className="flex items-start gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-saf-800 text-amber-300 flex items-center justify-center shrink-0">
-              <Bot className="w-4 h-4" />
-            </div>
-            <div className="bg-white border border-stone-200/90 rounded-2xl rounded-tl-none p-3.5 shadow-sm text-xs text-stone-600 flex items-center gap-2">
-              <Loader2 className="w-4 h-4 text-saf-600 animate-spin" />
-              <span>Bwana Shamba anatafakari ushauri wa kitaalamu...</span>
-            </div>
+                {isLoading ? 'Analyzing...' : 'Detect Disease'}
+              </button>
+            </form>
           </div>
-        )}
-
-        <div ref={messagesEndRef} />
-      </div>
-
-      {selectedImage && (
+          {messages.filter((m) => m.sender === 'assistant' && m.text.includes('Ugonjwa:')).length > 0 && (
+            <div className="bg-white rounded-xl border border-stone-200 p-4">
+              <h4 className="text-xs font-bold text-saf-900 mb-2">Last Scan Result</h4>
+              <div className="text-xs text-stone-700 whitespace-pre-wrap">
+                {messages.filter((m) => m.sender === 'assistant').pop()?.text}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {selectedImage && mode === 'chat' && (
         <div className="px-4 py-2 bg-saf-50 border-t border-saf-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
@@ -427,11 +560,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
           <button
             type="button"
             onClick={isRecording ? stopRecording : startRecording}
-            className={`p-2.5 rounded-xl transition ${
-              isRecording
-                ? 'bg-rose-600 text-white animate-pulse'
-                : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
-            }`}
+            className={'p-2.5 rounded-xl transition ' + (isRecording ? 'bg-rose-600 text-white animate-pulse' : 'bg-stone-100 hover:bg-stone-200 text-stone-700')}
             title={isRecording ? 'Bonyeza kumaliza kurekodi' : 'Ongea ujumbe wa sauti'}
           >
             {isRecording ? <Square className="w-5 h-5" /> : <Mic className="w-5 h-5 text-saf-700" />}
@@ -451,11 +580,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
             type="submit"
             id="chat-send-btn"
             disabled={(!inputPrompt.trim() && !selectedImage) || isLoading}
-            className={`p-2.5 rounded-xl font-medium transition flex items-center justify-center ${
-              (!inputPrompt.trim() && !selectedImage) || isLoading
-                ? 'bg-stone-200 text-stone-400 cursor-not-allowed'
-                : 'bg-saf-800 hover:bg-saf-700 text-white shadow-md'
-            }`}
+            className={'p-2.5 rounded-xl font-medium transition flex items-center justify-center ' + ((!inputPrompt.trim() && !selectedImage) || isLoading ? 'bg-stone-200 text-stone-400 cursor-not-allowed' : 'bg-saf-800 hover:bg-saf-700 text-white shadow-md')}
           >
             <Send className="w-5 h-5" />
           </button>
