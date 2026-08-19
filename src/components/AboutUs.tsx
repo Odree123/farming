@@ -43,63 +43,10 @@ export const AboutUs: React.FC<AboutUsProps> = ({ currentLanguage, initialSectio
     }
   }, [initialSection]);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
     <div className="min-h-screen text-stone-900 bg-stone-50 px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-5xl mx-auto space-y-16">
         
-        {/* Quick Section Anchor Pills */}
-        <div className="sticky top-20 z-30 flex items-center justify-center gap-2 overflow-x-auto py-2 px-3 bg-white/90 backdrop-blur-md rounded-2xl border border-stone-200 shadow-sm max-w-2xl mx-auto">
-          <button
-            onClick={() => scrollTo('who-we-are')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Who We Are
-          </button>
-          <button
-            onClick={() => scrollTo('our-journey')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Our Journey
-          </button>
-          <button
-            onClick={() => scrollTo('leadership')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Leadership
-          </button>
-          <button
-            onClick={() => scrollTo('corporate-strategy')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Corporate Strategy
-          </button>
-          <button
-            onClick={() => scrollTo('csr')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            CSR
-          </button>
-          <button
-            onClick={() => scrollTo('awards')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Awards &amp; Certifications
-          </button>
-          <button
-            onClick={() => scrollTo('partners')}
-            className="px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-saf-800 hover:bg-stone-100 rounded-xl transition whitespace-nowrap"
-          >
-            Partners
-          </button>
-        </div>
-
         {/* 1. WHO WE ARE */}
         <section id="who-we-are" ref={whoWeAreRef} className="pt-6 scroll-mt-28">
           <div className="text-center max-w-3xl mx-auto space-y-6">
@@ -437,43 +384,43 @@ export const AboutUs: React.FC<AboutUsProps> = ({ currentLanguage, initialSectio
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 pt-4">
             <div 
               id="partner-maseno"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition"
             >
               Maseno University
             </div>
             <div 
               id="partner-kalro"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition"
             >
               KALRO
             </div>
             <div 
               id="partner-ministry"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition"
             >
               Ministry of Agriculture
             </div>
             <div 
               id="partner-board"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition"
             >
               Kenya Agricultural Board
             </div>
             <div 
               id="partner-counties"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition"
             >
               County Governments
             </div>
             <div 
               id="partner-farmers-fed"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition sm:col-span-2 md:col-span-1"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition sm:col-span-2 md:col-span-1"
             >
               Kenya National Farmers Federation
             </div>
             <div 
               id="partner-aatf"
-              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium text-stone-200 hover:border-saf-500/50 hover:text-saf-700 transition col-span-2 sm:col-span-1 md:col-span-2"
+              className="bg-white border border-stone-200 rounded-xl p-4 text-center flex items-center justify-center text-sm font-medium font-sans text-stone-700 hover:border-saf-500/50 hover:text-saf-700 transition col-span-2 sm:col-span-1 md:col-span-2"
             >
               African Agricultural Technology Foundation
             </div>

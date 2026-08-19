@@ -46,14 +46,10 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
-              {quickLinks.map((link) => (
-                <li key={link.tab}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab(link.tab)}
-                    className="text-left hover:text-amber-400 cursor-pointer transition"
-                  >
-                    {link.label}
+              {quickLinks.map(({ label, tab }) => (
+                <li key={tab}>
+                  <button onClick={() => setActiveTab(tab)} className="hover:text-amber-400 transition">
+                    {label}
                   </button>
                 </li>
               ))}
@@ -75,6 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
             <ul className="space-y-2 text-stone-500">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-saf-500" />
+                
                 <span>+254 711 234 567</span>
               </li>
               <li className="flex items-center gap-2">
