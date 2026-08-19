@@ -1,19 +1,21 @@
+'use client';
+
 import React from 'react';
 import { X, Phone, MessageCircle, MapPin, Star, ShieldCheck, ExternalLink } from 'lucide-react';
-import { ProductItem, LanguageCode } from '../types';
-import { getTranslation } from '../data/translations';
+import { ProductItem } from '@/src/types';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { getTranslation } from '@/src/data/translations';
 
 interface ProductModalProps {
   product: ProductItem;
   onClose: () => void;
-  currentLanguage: LanguageCode;
 }
 
 export const ProductModal: React.FC<ProductModalProps> = ({
   product,
   onClose,
-  currentLanguage,
 }) => {
+  const { currentLanguage } = useLanguage();
   const t = getTranslation(currentLanguage);
 
   const waLink = `https://wa.me/${product.seller.phone.replace(/\s/g, '')}?text=${encodeURIComponent(`Hi ${product.seller.name}, I'm interested in ${product.name} from SautiFarm.`)}`;

@@ -1,19 +1,21 @@
+'use client';
+
 import React, { useState } from 'react';
-import { 
-  MessageSquareText, 
-  ScanLine, 
-  TrendingUp, 
-  ShoppingBag, 
-  PhoneCall, 
-  CloudRain, 
-  Sun, 
-  AlertCircle, 
-  ArrowRight, 
-  CheckCircle2, 
-  MapPin, 
-  Sparkles, 
-  TrendingDown, 
-  Wheat, 
+import {
+  MessageSquareText,
+  ScanLine,
+  TrendingUp,
+  ShoppingBag,
+  PhoneCall,
+  CloudRain,
+  Sun,
+  AlertCircle,
+  ArrowRight,
+  CheckCircle2,
+  MapPin,
+  Sparkles,
+  TrendingDown,
+  Wheat,
   Clock,
   HelpCircle,
   Award,
@@ -21,21 +23,16 @@ import {
   Users,
   Calendar
 } from 'lucide-react';
-import { LanguageCode, FarmerProfile, CountyWeather } from '../types';
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { useAuth } from '@/app/context/AuthContext';
+import { CountyWeather } from '../types';
 import { getTranslation } from '../data/translations';
-import { COUNTY_WEATHERS, LIVE_MARKET_PRICES, FARMER_STORIES, CROP_CALENDAR, VIDEO_TUTORIALS, MARKET_STATS } from '../data/mockData';
+import { COUNTY_WEATHERS, LIVE_MARKET_PRICES, FARMER_STORIES, CROP_CALENDAR, VIDEO_TUTORIALS } from '../data/mockData';
 
-interface HomeDashboardProps {
-  setActiveTab: (tab: string) => void;
-  currentLanguage: LanguageCode;
-  farmer: FarmerProfile;
-}
-
-export const HomeDashboard: React.FC<HomeDashboardProps> = ({
-  setActiveTab,
-  currentLanguage,
-  farmer,
-}) => {
+export const HomeDashboard: React.FC = () => {
+  const { currentLanguage } = useLanguage();
+  const router = useRouter();
   const t = getTranslation(currentLanguage);
   const [selectedCounty, setSelectedCounty] = useState<string>('Uasin Gishu (Eldoret)');
 
@@ -64,7 +61,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button
-              onClick={() => setActiveTab('chat')}
+              onClick={() => router.push('/chat')}
               className="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold py-3.5 px-5 rounded-xl shadow-lg transition duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               <MessageSquareText className="w-5 h-5" />
@@ -73,7 +70,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             </button>
 
             <button
-              onClick={() => setActiveTab('disease')}
+              onClick={() => router.push('/disease')}
               className="flex items-center justify-center gap-2 bg-saf-700/90 hover:bg-saf-600 border border-saf-500/40 text-white font-semibold py-3.5 px-5 rounded-xl transition hover:scale-[1.02] active:scale-[0.98]"
             >
               <ScanLine className="w-5 h-5 text-amber-300" />
@@ -167,7 +164,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <h2 className="text-sm font-bold text-stone-900">{t.home.todayPricesTitle}</h2>
             </div>
             <button
-              onClick={() => setActiveTab('prices')}
+              onClick={() => router.push('/prices')}
               className="text-xs text-saf-700 hover:text-saf-800 font-semibold flex items-center gap-1"
             >
               <span>{t.home.viewPricesBtn}</span>
@@ -252,8 +249,8 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
+       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+         <div id="stories" className="lg:col-span-2 bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Users className="w-5 h-5 text-saf-600" />
             <h2 className="text-sm font-bold text-stone-900">{t.home.storiesTitle}</h2>
@@ -277,7 +274,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
+        <div id="calendar" className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Calendar className="w-5 h-5 text-saf-600" />
             <h2 className="text-sm font-bold text-stone-900">{t.home.cropCalendarTitle}</h2>
@@ -298,7 +295,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
+      <div id="videos" className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <PlayCircle className="w-5 h-5 text-saf-600" />
           <h2 className="text-sm font-bold text-stone-900">{t.home.videoTutorialsTitle}</h2>

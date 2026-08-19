@@ -1,28 +1,28 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
-import { 
-  TrendingUp, 
-  ShieldCheck, 
-  FileText, 
-  PieChart, 
-  DollarSign, 
-  Award, 
-  CheckCircle2, 
+import {
+  TrendingUp,
+  ShieldCheck,
+  FileText,
+  PieChart,
+  DollarSign,
+  Award,
+  CheckCircle2,
   BarChart3,
   Lock,
   Building2
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
 
-interface InvestorsProps {
-  currentLanguage: LanguageCode;
-  initialSection?: string;
-  setActiveTab?: (tab: string) => void;
-}
-
-export const Investors: React.FC<InvestorsProps> = ({ currentLanguage, initialSection, setActiveTab }) => {
+export const Investors: React.FC = () => {
   const infoRef = useRef<HTMLDivElement>(null);
   const reportsRef = useRef<HTMLDivElement>(null);
   const governanceRef = useRef<HTMLDivElement>(null);
+  const { currentLanguage } = useLanguage();
+  const searchParams = useSearchParams();
+  const initialSection = searchParams.get('section');
 
   useEffect(() => {
     if (initialSection) {

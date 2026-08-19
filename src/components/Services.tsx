@@ -1,27 +1,31 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
-import { 
-  Sprout, 
-  Briefcase, 
-  Cpu, 
-  FolderGit2, 
-  CheckCircle2, 
+import {
+  Sprout,
+  Briefcase,
+  Cpu,
+  FolderGit2,
+  CheckCircle2,
   ArrowRight,
   MessageSquare,
   Sparkles
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { getTranslation } from '@/src/data/translations';
 
-interface ServicesProps {
-  currentLanguage: LanguageCode;
-  initialSection?: string;
-  setActiveTab?: (tab: string) => void;
-}
-
-export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSection, setActiveTab }) => {
+export const Services: React.FC = () => {
   const adviceRef = useRef<HTMLDivElement>(null);
   const consultancyRef = useRef<HTMLDivElement>(null);
   const modelDevRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
+
+  const { currentLanguage } = useLanguage();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSection = searchParams.get('section');
+  const t = getTranslation(currentLanguage);
 
   useEffect(() => {
     if (initialSection) {
@@ -120,25 +124,23 @@ export const Services: React.FC<ServicesProps> = ({ currentLanguage, initialSect
               </div>
             </div>
 
-            {setActiveTab && (
               <div className="pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs text-stone-500">Experience our AI Agricultural Advisor directly on SautiFarm</span>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setActiveTab('home')}
+                    onClick={() => router.push('/')}
                     className="px-3.5 py-1.5 text-xs font-semibold bg-saf-800 hover:bg-saf-700 text-white rounded-lg transition"
                   >
                     Open AI Chat
                   </button>
                   <button
-                    onClick={() => setActiveTab('disease')}
+                    onClick={() => router.push('/disease')}
                     className="px-3.5 py-1.5 text-xs font-semibold bg-stone-800 hover:bg-stone-700 text-emerald-300 rounded-lg transition"
                   >
                     Diagnose Crop Disease
                   </button>
                 </div>
               </div>
-            )}
           </div>
         </section>
 

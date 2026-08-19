@@ -1,4 +1,4 @@
-import { DiseaseDiagnosis, MarketPrice, ProductItem, CountyWeather, FarmerStory, CropCalendarItem, VideoTutorial, MarketStat } from '../types';
+import { DiseaseDiagnosis, MarketPrice, ProductItem, CountyWeather, FarmerStory, CropCalendarItem, VideoTutorial, MarketStat, FarmerProfile } from '../types';
 
 export const KENYA_COUNTIES = [
   'Uasin Gishu (Eldoret)',
@@ -733,6 +733,17 @@ export const COUNTY_WEATHERS: CountyWeather[] = [
     ],
   },
 ];
+
+export const DEFAULT_FARMER: FarmerProfile = {
+  phone: '0722 123 456',
+  name: 'Wanjiku Mwangi',
+  county: 'Uasin Gishu (Eldoret)',
+  farmSizeAcres: 3.5,
+  primaryCrops: ['Mahindi', 'Maharage', 'Nyanya'],
+  livestock: ['Ng\'ombe', 'Kienyeji'],
+  preferredLanguage: 'sw',
+  isAuthenticated: true,
+};
 
 export const FARMER_STORIES: FarmerStory[] = [
   {

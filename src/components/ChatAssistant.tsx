@@ -1,44 +1,46 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Send, 
-  Mic, 
-  Square, 
-  Image as ImageIcon, 
-  Volume2, 
-  VolumeX, 
-  Sparkles, 
-  Trash2, 
-  Copy, 
-  Check, 
-  Loader2, 
-  Camera, 
-  X, 
-  Bot, 
-  User, 
+import {
+  Send,
+  Mic,
+  Square,
+  Image as ImageIcon,
+  Volume2,
+  VolumeX,
+  Sparkles,
+  Trash2,
+  Copy,
+  Check,
+  Loader2,
+  Camera,
+  X,
+  Bot,
+  User,
   AlertCircle,
   ShoppingBag,
   TrendingUp,
   Leaf,
   ScanLine
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { useAuth } from '@/app/context/AuthContext';
 import { ChatMessage, LanguageCode, FarmerProfile } from '../types';
 import { getTranslation } from '../data/translations';
+import { DEFAULT_FARMER } from '../data/mockData';
 
 interface ChatAssistantProps {
-  currentLanguage: LanguageCode;
-  farmer: FarmerProfile;
-  setActiveTab: (tab: string) => void;
-  isOpen?: boolean;
   onClose?: () => void;
 }
 
 export const ChatAssistant: React.FC<ChatAssistantProps> = ({
-  currentLanguage,
-  farmer,
-  setActiveTab,
-  isOpen = true,
   onClose,
 }) => {
+  const { currentLanguage } = useLanguage();
+  const { farmer } = useAuth();
+  const router = useRouter();
+  const effectiveFarmer: FarmerProfile = farmer || DEFAULT_FARMER;
   const t = getTranslation(currentLanguage);
 
   const [mode, setMode] = useState('chat' as 'chat' | 'disease');
@@ -54,7 +56,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
       {
         id: 'welcome-msg',
         sender: 'assistant',
-        text: 'Habari ' + (farmer.name || 'Mkulima') + '! Mimi ni Bwana Shamba AI wa SautiFarm. 🌾\n\nNiko hapa kukusaidia kwa maswali yote ya kilimo, ukaguzi wa magonjwa ya majani, mbolea bora za kupandia, na bei za mazao masokoni nchini Kenya.\n\nUnaweza kuandika swali, kupakia picha ya mmea, au kubofya kipaza sauti kuongea.',
+        text: 'Habari ' + (effectiveFarmer.name || 'Mkulima') + '! Mimi ni Bwana Shamba AI wa SautiFarm. 🌾\n\nNiko hapa kukusaidia kwa maswali yote ya kilimo, ukaguzi wa magonjwa ya majani, mbolea bora za kupandia, na bei za mazao masokoni nchini Kenya.\n\nUnaweza kuandika swali, kupakia picha ya mmea, au kubofya kipaza sauti kuongea.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
     ];
@@ -76,8 +78,6 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     localStorage.setItem('sautifarm_chat_history', JSON.stringify(messages));
   }, [messages]);
-
-  if (!isOpen) return null;
 
   const startRecording = async () => {
     try {
@@ -163,8 +163,8 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
           history: messages,
           language: currentLanguage,
           imageUrl: sentImage,
-          county: farmer.county || 'Uasin Gishu',
-          farmSize: (farmer.farmSizeAcres || 2) + ' acres',
+          county: effectiveFarmer.county || 'Uasin Gishu',
+          farmSize: (effectiveFarmer.farmSizeAcres || 2) + ' acres',
         }),
       });
 
@@ -314,7 +314,7 @@ export const ChatAssistant: React.FC<ChatAssistantProps> = ({
               </span>
             </div>
             <p className="text-[11px] text-saf-200/90">
-              Ushauri wa Kilimo • Kaunti: {farmer.county || 'Kenya'} • Ekari {farmer.farmSizeAcres || 2}
+              Ushauri wa Kilimo • Kaunti: {effectiveFarmer.county || 'Kenya'} • Ekari {effectiveFarmer.farmSizeAcres || 2}
             </p>
           </div>
         </div>

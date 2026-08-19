@@ -1,13 +1,13 @@
+'use client';
+
 import React from 'react';
 import { Briefcase, ArrowLeft } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
 
-interface CareersProps {
-  currentLanguage: LanguageCode;
-  setActiveTab: (tab: string) => void;
-}
-
-export const Careers: React.FC<CareersProps> = ({ currentLanguage, setActiveTab }) => {
+export const Careers: React.FC = () => {
+  const { currentLanguage } = useLanguage();
+  const router = useRouter();
   return (
     <div className="min-h-screen text-stone-900 bg-stone-50 px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-4xl mx-auto space-y-16">
@@ -60,10 +60,11 @@ export const Careers: React.FC<CareersProps> = ({ currentLanguage, setActiveTab 
           {/* Back to Home Button */}
           <div className="pt-4">
             <button
-              onClick={() => setActiveTab('home')}
+              onClick={() => router.push('/')}
               id="btn-careers-back-to-home"
               className="inline-flex items-center space-x-2 text-saf-800 hover:text-saf-700 font-medium text-sm transition"
             >
+              <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </button>
           </div>

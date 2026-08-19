@@ -1,15 +1,17 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
-import { 
-  Building2, 
-  Target, 
-  Award, 
-  Handshake, 
-  HeartHandshake, 
-  Sparkles, 
-  GraduationCap, 
-  Cpu, 
-  Leaf, 
-  CheckCircle2, 
+import {
+  Building2,
+  Target,
+  Award,
+  Handshake,
+  HeartHandshake,
+  Sparkles,
+  GraduationCap,
+  Cpu,
+  Leaf,
+  CheckCircle2,
   ArrowRight,
   ShieldCheck,
   Calendar,
@@ -17,15 +19,9 @@ import {
   Compass,
   Lightbulb
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useSearchParams } from 'next/navigation';
 
-interface AboutUsProps {
-  currentLanguage: LanguageCode;
-  initialSection?: string;
-  setActiveTab?: (tab: string) => void;
-}
-
-export const AboutUs: React.FC<AboutUsProps> = ({ currentLanguage, initialSection, setActiveTab }) => {
+export const AboutUs: React.FC = () => {
   const whoWeAreRef = useRef<HTMLDivElement>(null);
   const journeyRef = useRef<HTMLDivElement>(null);
   const leadershipRef = useRef<HTMLDivElement>(null);
@@ -33,6 +29,9 @@ export const AboutUs: React.FC<AboutUsProps> = ({ currentLanguage, initialSectio
   const csrRef = useRef<HTMLDivElement>(null);
   const awardsRef = useRef<HTMLDivElement>(null);
   const partnersRef = useRef<HTMLDivElement>(null);
+
+  const searchParams = useSearchParams();
+  const initialSection = searchParams.get('section');
 
   useEffect(() => {
     if (initialSection) {

@@ -1,70 +1,81 @@
+'use client';
+
 import React, { useState } from 'react';
-import { 
-  Sprout, 
-  MessageSquareText, 
-  TrendingUp, 
-  ShoppingBag, 
-  Globe, 
-  Menu, 
+import {
+  Sprout,
+  MessageSquareText,
+  TrendingUp,
+  ShoppingBag,
+  Globe,
+  Menu,
   X,
   ChevronDown,
   User,
   MoreHorizontal,
   Info,
   Briefcase,
-  Award
+  Award,
 } from 'lucide-react';
-import { LanguageCode, FarmerProfile } from '../types';
-import { SUPPORTED_LANGUAGES, getTranslation } from '../data/translations';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { useAuth } from '@/app/context/AuthContext';
+import { usePathname, useRouter } from 'next/navigation';
+import { SUPPORTED_LANGUAGES, getTranslation } from '@/src/data/translations';
 
-interface NavbarProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  currentLanguage: LanguageCode;
-  setLanguage: (lang: LanguageCode) => void;
-  farmer: FarmerProfile;
-}
+const tabToPath: Record<string, string> = {
+  home: '/',
+  about: '/about',
+  services: '/services',
+  careers: '/careers',
+  contact: '/contact',
+  prices: '/prices',
+  marketplace: '/marketplace',
+  investors: '/investors',
+  devportal: '/dev-portal',
+  informationhub: '/information-hub',
+  disease: '/disease',
+  chat: '/chat',
+};
 
-export const Navbar: React.FC<NavbarProps> = ({
-  activeTab,
-  setActiveTab,
-  currentLanguage,
-  setLanguage,
-  farmer,
-}) => {
+export const Navbar: React.FC = () => {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+  const { currentLanguage, setLanguage } = useLanguage();
+  const { farmer } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
   const t = getTranslation(currentLanguage);
 
-  const currentLangObj = SUPPORTED_LANGUAGES.find(l => l.code === currentLanguage) || SUPPORTED_LANGUAGES[0];
+  const currentLangObj = SUPPORTED_LANGUAGES.find((l) => l.code === currentLanguage) || SUPPORTED_LANGUAGES[0];
 
   const navItems = [
-    { id: 'home', label: t.nav.home, icon: Sprout },
-    { id: 'about', label: t.nav.about, icon: Info },
-    { id: 'services', label: t.nav.services, icon: Briefcase },
-    { id: 'careers', label: t.nav.careers, icon: Award },
-    { id: 'contact', label: t.nav.contact, icon: MessageSquareText },
+    { id: 'home', label: t.nav.home, icon: Sprout, path: '/' },
+    { id: 'about', label: t.nav.about, icon: Info, path: '/about' },
+    { id: 'services', label: t.nav.services, icon: Briefcase, path: '/services' },
+    { id: 'careers', label: t.nav.careers, icon: Award, path: '/careers' },
+    { id: 'contact', label: t.nav.contact, icon: MessageSquareText, path: '/contact' },
   ];
 
   const moreNavItems = [
-    { id: 'prices', label: t.nav.prices },
-    { id: 'marketplace', label: t.nav.marketplace },
-    { id: 'investors', label: t.nav.investors },
-    { id: 'informationhub', label: t.nav.informationHub },
-    { id: 'devportal', label: t.nav.devPortal },
-    { id: 'disease', label: t.nav.disease },
+    { id: 'prices', label: t.nav.prices, path: '/prices' },
+    { id: 'marketplace', label: t.nav.marketplace, path: '/marketplace' },
+    { id: 'investors', label: t.nav.investors, path: '/investors' },
+    { id: 'informationhub', label: t.nav.informationHub, path: '/information-hub' },
+    { id: 'devportal', label: t.nav.devPortal, path: '/dev-portal' },
+    { id: 'disease', label: t.nav.disease, path: '/disease' },
   ];
 
-  const isMoreActive = moreNavItems.some(item => item.id === activeTab);
+  const isMoreActive = moreNavItems.some((item) => pathname === item.path);
+
+  const isActivePath = (path: string) => pathname === path;
 
   return (
     <header className="sticky top-0 z-40 bg-saf-900 text-white shadow-lg border-b border-saf-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div 
-            className="flex items-center gap-3 cursor-pointer" 
-            onClick={() => setActiveTab('home')}
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => router.push('/')}
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 p-[2px] shadow-md">
               <div className="w-full h-full bg-saf-900 rounded-[10px] flex items-center justify-center">
@@ -89,11 +100,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeTab === item.id;
+              const isActive = isActivePath(item.path);
               return (
                 <button
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => router.push(item.path)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${isActive ? 'bg-saf-800 text-amber-300 shadow-inner' : 'text-saf-100 hover:bg-saf-800/60 hover:text-white'}`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-saf-300'}`} />
@@ -120,12 +131,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   />
                   <div className="absolute right-0 mt-2 w-48 bg-stone-900 border border-saf-700/80 rounded-xl shadow-xl z-50 py-1.5 overflow-hidden">
                     {moreNavItems.map((item) => {
-                      const isActive = activeTab === item.id;
+                      const isActive = pathname === item.path;
                       return (
                         <button
                           key={item.id}
                           onClick={() => {
-                            setActiveTab(item.id);
+                            router.push(item.path);
                             setMoreMenuOpen(false);
                           }}
                           className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-saf-950/80 transition ${isActive ? 'bg-saf-900/60 text-amber-300 font-semibold' : 'text-stone-200'}`}
@@ -156,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {langMenuOpen && (
                 <>
-                  <div 
+                  <div
                     className="fixed inset-0 z-40"
                     onClick={() => setLangMenuOpen(false)}
                   />
@@ -203,12 +214,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-saf-950 border-t border-saf-800 px-4 pt-2 pb-4 space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeTab === item.id;
+            const isActive = isActivePath(item.path);
             return (
               <button
                 key={item.id}
                 onClick={() => {
-                  setActiveTab(item.id);
+                  router.push(item.path);
                   setMobileMenuOpen(false);
                 }}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'}`}
@@ -224,12 +235,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-2 border-t border-saf-800/80 mt-2">
             <div className="text-[11px] font-bold text-stone-500 uppercase tracking-wider px-3 mb-1">{t.nav.more}</div>
             {moreNavItems.map((item) => {
-              const isActive = activeTab === item.id;
+              const isActive = pathname === item.path;
               return (
                 <button
                   key={item.id}
                   onClick={() => {
-                    setActiveTab(item.id);
+                    router.push(item.path);
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-saf-800 text-amber-300' : 'text-saf-100 hover:bg-saf-900'}`}
@@ -246,16 +257,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-3 border-t border-saf-800/80 mt-2">
             <div className="flex items-center gap-3 px-3 py-2">
               <div className="w-8 h-8 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center font-bold text-xs">
-                {farmer.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                {farmer ? farmer.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() : 'M'}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-bold text-white truncate">{farmer.name}</div>
-                <div className="text-[11px] text-saf-300 truncate">{farmer.county}</div>
+                <div className="text-xs font-bold text-white truncate">{farmer?.name || 'Bila kuingia'}</div>
+                <div className="text-[11px] text-saf-300 truncate">{farmer?.county || 'Kenya'}</div>
               </div>
             </div>
             <div className="px-3 py-2 text-[11px] text-stone-400 space-y-1">
-              <div>Ekari: {farmer.farmSizeAcres}</div>
-              <div>Mazao: {farmer.primaryCrops.join(', ')}</div>
+              {farmer && <div>Ekari: {farmer.farmSizeAcres}</div>}
+              {farmer && <div>Mazao: {farmer.primaryCrops.join(', ')}</div>}
             </div>
           </div>
         </div>

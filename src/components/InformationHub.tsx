@@ -1,31 +1,32 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
-import { 
-  Newspaper, 
-  HelpCircle, 
-  Leaf, 
-  Calendar as CalendarIcon, 
-  ChevronDown, 
-  ChevronUp, 
-  Clock, 
-  Tag, 
-  CheckCircle2, 
+import {
+  Newspaper,
+  HelpCircle,
+  Leaf,
+  Calendar as CalendarIcon,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Tag,
+  CheckCircle2,
   ArrowRight,
   TrendingUp,
   Sparkles
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
 
-interface InformationHubProps {
-  currentLanguage: LanguageCode;
-  initialSection?: string;
-  setActiveTab?: (tab: string) => void;
-}
-
-export const InformationHub: React.FC<InformationHubProps> = ({ currentLanguage, initialSection, setActiveTab }) => {
+export const InformationHub: React.FC = () => {
   const newsRef = useRef<HTMLDivElement>(null);
   const sustainabilityRef = useRef<HTMLDivElement>(null);
   const faqRef = useRef<HTMLDivElement>(null);
   const eventsRef = useRef<HTMLDivElement>(null);
+  const { currentLanguage } = useLanguage();
+  const searchParams = useSearchParams();
+
+  const initialSection = searchParams.get('section');
 
   useEffect(() => {
     if (initialSection) {

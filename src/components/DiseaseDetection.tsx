@@ -1,34 +1,32 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  ScanLine, 
-  UploadCloud, 
-  Camera, 
-  Sparkles, 
-  AlertTriangle, 
-  CheckCircle2, 
-  ShieldAlert, 
-  Clock, 
-  ShoppingBag, 
-  RefreshCw, 
-  Leaf, 
+import {
+  ScanLine,
+  UploadCloud,
+  Camera,
+  Sparkles,
+  AlertTriangle,
+  CheckCircle2,
+  ShieldAlert,
+  Clock,
+  ShoppingBag,
+  RefreshCw,
+  Leaf,
   ArrowRight,
   Info,
   HelpCircle,
   TrendingDown
 } from 'lucide-react';
-import { LanguageCode, DiseaseDiagnosis, ProductItem } from '../types';
-import { getTranslation } from '../data/translations';
-import { SAMPLE_CROP_DISEASES, MARKETPLACE_PRODUCTS } from '../data/mockData';
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { DiseaseDiagnosis } from '@/src/types';
+import { getTranslation } from '@/src/data/translations';
+import { SAMPLE_CROP_DISEASES, MARKETPLACE_PRODUCTS } from '@/src/data/mockData';
 
-interface DiseaseDetectionProps {
-  currentLanguage: LanguageCode;
-  setActiveTab: (tab: string) => void;
-}
-
-export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
-  currentLanguage,
-  setActiveTab,
-}) => {
+export const DiseaseDetection: React.FC = () => {
+  const { currentLanguage } = useLanguage();
+  const router = useRouter();
   const t = getTranslation(currentLanguage);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -399,7 +397,7 @@ export const DiseaseDetection: React.FC<DiseaseDetectionProps> = ({
                               KES {prod.priceKES.toLocaleString()}
                             </span>
                             <button
-                              onClick={() => setActiveTab('marketplace')}
+                              onClick={() => router.push('/marketplace')}
                               className="bg-saf-800 hover:bg-saf-700 text-white px-2.5 py-1 rounded-lg text-xs font-medium transition flex items-center gap-1 shadow-sm"
                             >
                               <ShoppingBag className="w-3 h-3" />

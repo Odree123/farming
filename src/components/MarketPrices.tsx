@@ -1,29 +1,28 @@
+'use client';
+
 import React, { useState, useMemo } from 'react';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Search, 
-  Filter, 
-  MapPin, 
-  Bell, 
-  Calculator, 
-  Wheat, 
-  ArrowRight, 
-  ArrowUpDown, 
-  Check, 
+import {
+  TrendingUp,
+  TrendingDown,
+  Search,
+  Filter,
+  MapPin,
+  Bell,
+  Calculator,
+  Wheat,
+  ArrowRight,
+  ArrowUpDown,
+  Check,
   AlertCircle,
   Truck
 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { LanguageCode, MarketPrice } from '../types';
-import { getTranslation } from '../data/translations';
-import { LIVE_MARKET_PRICES } from '../data/mockData';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { getTranslation } from '@/src/data/translations';
+import { LIVE_MARKET_PRICES } from '@/src/data/mockData';
 
-interface MarketPricesProps {
-  currentLanguage: LanguageCode;
-}
-
-export const MarketPrices: React.FC<MarketPricesProps> = ({ currentLanguage }) => {
+export const MarketPrices: React.FC = () => {
+  const { currentLanguage } = useLanguage();
   const t = getTranslation(currentLanguage);
 
   const [searchTerm, setSearchTerm] = useState('');

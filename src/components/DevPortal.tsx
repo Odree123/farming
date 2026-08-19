@@ -1,30 +1,27 @@
+'use client';
+
 import React, { useState } from 'react';
-import { 
-  Code2, 
-  Copy, 
-  Check, 
-  Terminal, 
-  Key, 
-  Server, 
-  ExternalLink, 
-  Layers, 
-  Activity, 
-  FileCode, 
-  Cpu, 
+import {
+  Code2,
+  Copy,
+  Check,
+  Terminal,
+  Key,
+  Server,
+  ExternalLink,
+  Layers,
+  Activity,
+  FileCode,
+  Cpu,
   Sparkles,
   ArrowRight,
   ShieldAlert,
   Play
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useAuth } from '@/app/context/AuthContext';
 
-interface DevPortalProps {
-  currentLanguage: LanguageCode;
-  setActiveTab: (tab: string) => void;
-  openAuthModal?: (mode: 'login' | 'register') => void;
-}
-
-export const DevPortal: React.FC<DevPortalProps> = ({ currentLanguage, setActiveTab, openAuthModal }) => {
+export const DevPortal: React.FC = () => {
+  const { openAuthModal } = useAuth();
   const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
   const [activeTab, setActiveCodeTab] = useState<'curl' | 'vision' | 'python' | 'nodejs'>('curl');
   
@@ -179,7 +176,7 @@ console.log(data.choices[0].message.content);`;
             Generate and manage workspace keys on the{' '}
             <button
               onClick={() => {
-                if (openAuthModal) openAuthModal('register');
+                openAuthModal();
               }}
               className="text-saf-800 hover:text-saf-700 underline font-semibold transition inline-flex items-center space-x-1"
             >
@@ -447,7 +444,7 @@ console.log(data.choices[0].message.content);`;
                 Create a free developer account on the{' '}
                 <button
                   onClick={() => {
-                    if (openAuthModal) openAuthModal('register');
+                    openAuthModal();
                   }}
                   className="text-saf-800 hover:text-saf-700 font-semibold underline transition"
                 >
@@ -458,7 +455,7 @@ console.log(data.choices[0].message.content);`;
                 Generate an active API Key on the{' '}
                 <button
                   onClick={() => {
-                    if (openAuthModal) openAuthModal('login');
+                    openAuthModal();
                   }}
                   className="text-saf-800 hover:text-saf-700 font-semibold underline transition"
                 >

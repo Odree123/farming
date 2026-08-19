@@ -1,26 +1,26 @@
+'use client';
+
 import React from 'react';
 import { Sprout, Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
-import { LanguageCode } from '../types';
-import { getTranslation } from '../data/translations';
+import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { getTranslation } from '@/src/data/translations';
 
-interface FooterProps {
-  currentLanguage: LanguageCode;
-  setActiveTab: (tab: string) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab }) => {
+export const Footer: React.FC = () => {
+  const { currentLanguage } = useLanguage();
+  const router = useRouter();
   const t = getTranslation(currentLanguage);
 
   const quickLinks = [
-    { label: t.nav.home, tab: 'home' },
-    { label: t.nav.about, tab: 'about' },
-    { label: t.nav.services, tab: 'services' },
-    { label: t.nav.careers, tab: 'careers' },
-    { label: t.nav.contact, tab: 'contact' },
-    { label: t.chat.title, tab: 'chat' },
-    { label: t.disease.title, tab: 'disease' },
-    { label: t.prices.title, tab: 'prices' },
-    { label: t.marketplace.title, tab: 'marketplace' },
+    { label: t.nav.home, path: '/' },
+    { label: t.nav.about, path: '/about' },
+    { label: t.nav.services, path: '/services' },
+    { label: t.nav.careers, path: '/careers' },
+    { label: t.nav.contact, path: '/contact' },
+    { label: t.chat.title, path: '/chat' },
+    { label: t.disease.title, path: '/disease' },
+    { label: t.prices.title, path: '/prices' },
+    { label: t.marketplace.title, path: '/marketplace' },
   ];
 
   return (
@@ -46,9 +46,9 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
-              {quickLinks.map(({ label, tab }) => (
-                <li key={tab}>
-                  <button onClick={() => setActiveTab(tab)} className="hover:text-amber-400 transition">
+              {quickLinks.map(({ label, path }) => (
+                <li key={path}>
+                  <button onClick={() => router.push(path)} className="hover:text-amber-400 transition">
                     {label}
                   </button>
                 </li>
@@ -59,10 +59,10 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.resources}</h4>
             <ul className="space-y-2 text-stone-500">
-              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.storiesTitle}</button></li>
-              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.cropCalendarTitle}</button></li>
-              <li><button onClick={() => setActiveTab('home')} className="hover:text-amber-400 transition">{t.home.videoTutorialsTitle}</button></li>
-              <li><button onClick={() => setActiveTab('informationhub')} className="hover:text-amber-400 transition">{t.nav.informationHub}</button></li>
+              <li><button onClick={() => router.push('/#stories')} className="hover:text-amber-400 transition">{t.home.storiesTitle}</button></li>
+              <li><button onClick={() => router.push('/#calendar')} className="hover:text-amber-400 transition">{t.home.cropCalendarTitle}</button></li>
+              <li><button onClick={() => router.push('/#videos')} className="hover:text-amber-400 transition">{t.home.videoTutorialsTitle}</button></li>
+              <li><button onClick={() => router.push('/information-hub')} className="hover:text-amber-400 transition">{t.nav.informationHub}</button></li>
             </ul>
           </div>
 
@@ -71,7 +71,6 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab })
             <ul className="space-y-2 text-stone-500">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-saf-500" />
-                
                 <span>+254 711 234 567</span>
               </li>
               <li className="flex items-center gap-2">

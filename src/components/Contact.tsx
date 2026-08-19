@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { 
   Mail, 
@@ -11,14 +13,10 @@ import {
   Users,
   Megaphone
 } from 'lucide-react';
-import { LanguageCode } from '../types';
+import { useLanguage } from '@/app/context/LanguageContext';
 
-interface ContactUsProps {
-  currentLanguage: LanguageCode;
-  setActiveTab?: (tab: string) => void;
-}
-
-export const ContactUs: React.FC<ContactUsProps> = ({ currentLanguage, setActiveTab }) => {
+export const ContactUs: React.FC = () => {
+  const { currentLanguage } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',

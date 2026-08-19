@@ -1,30 +1,32 @@
+'use client';
+
 import React, { useState, useMemo } from 'react';
-import { 
-  ShoppingBag, 
-  Search, 
-  Filter, 
-  Star, 
-  ShieldCheck, 
-  Check, 
-  MapPin, 
-  Phone, 
+import {
+  ShoppingBag,
+  Search,
+  Filter,
+  Star,
+  ShieldCheck,
+  Check,
+  MapPin,
+  Phone,
   Sparkles,
   Tag,
   AlertCircle
 } from 'lucide-react';
-import { LanguageCode, ProductItem } from '../types';
-import { getTranslation } from '../data/translations';
-import { MARKETPLACE_PRODUCTS } from '../data/mockData';
+import { ProductItem } from '@/src/types';
+import { useLanguage } from '@/app/context/LanguageContext';
+import { getTranslation } from '@/src/data/translations';
+import { MARKETPLACE_PRODUCTS } from '@/src/data/mockData';
 
 interface MarketplaceProps {
-  currentLanguage: LanguageCode;
   onSelectProduct: (product: ProductItem) => void;
 }
 
 export const Marketplace: React.FC<MarketplaceProps> = ({
-  currentLanguage,
   onSelectProduct,
 }) => {
+  const { currentLanguage } = useLanguage();
   const t = getTranslation(currentLanguage);
 
   const [searchTerm, setSearchTerm] = useState('');
