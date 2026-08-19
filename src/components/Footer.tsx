@@ -5,10 +5,23 @@ import { getTranslation } from '../data/translations';
 
 interface FooterProps {
   currentLanguage: LanguageCode;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
+export const Footer: React.FC<FooterProps> = ({ currentLanguage, setActiveTab }) => {
   const t = getTranslation(currentLanguage);
+
+  const quickLinks = [
+    { label: t.nav.home, tab: 'home' },
+    { label: t.nav.about, tab: 'about' },
+    { label: t.nav.services, tab: 'services' },
+    { label: t.nav.careers, tab: 'careers' },
+    { label: t.nav.contact, tab: 'contact' },
+    { label: t.chat.title, tab: 'chat' },
+    { label: t.disease.title, tab: 'disease' },
+    { label: t.prices.title, tab: 'prices' },
+    { label: t.marketplace.title, tab: 'marketplace' },
+  ];
 
   return (
     <footer className="bg-stone-900 text-stone-400 border-t border-stone-800 py-10">
@@ -33,16 +46,17 @@ export const Footer: React.FC<FooterProps> = ({ currentLanguage }) => {
           <div>
             <h4 className="text-stone-200 font-bold mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-stone-500">
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.about}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.services}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.careers}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.home}</span></li>
-                <li><span className="hover:text-amber-400 cursor-pointer transition">{t.nav.contact}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.chat.title}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.disease.title}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.prices.title}</span></li>
-              <li><span className="hover:text-amber-400 cursor-pointer transition">{t.marketplace.title}</span></li>
-              
+              {quickLinks.map((link) => (
+                <li key={link.tab}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab(link.tab)}
+                    className="text-left hover:text-amber-400 cursor-pointer transition"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 

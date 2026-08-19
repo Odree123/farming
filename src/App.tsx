@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HomeDashboard } from './components/HomeDashboard';
 import { AboutUs } from './components/AboutUs';
@@ -12,17 +12,18 @@ import { Marketplace } from './components/Marketplace';
 import { ProductModal } from './components/ProductModal';
 import { Footer } from './components/Footer';
 import { LanguageCode, ProductItem, FarmerProfile } from './types';
-import { getTranslation } from './data/translations';
-import { Sprout } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab] = useState<string>(() => {
+    const saved = localStorage.getItem('sautifarm_active_tab');
+    return saved || 'home';
+  });
   const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>(() => {
     const saved = localStorage.getItem('sautifarm_lang');
     return (saved as LanguageCode) || 'sw';
   });
 
-  const [farmer, setFarmer] = useState<FarmerProfile>(() => {
+  const [farmer] = useState<FarmerProfile>(() => {
     const saved = localStorage.getItem('sautifarm_user_profile');
     if (saved) {
       try {
@@ -47,7 +48,10 @@ export default function App() {
     localStorage.setItem('sautifarm_lang', currentLanguage);
   }, [currentLanguage]);
 
-  const t = getTranslation(currentLanguage);
+  useEffect(() => {
+    localStorage.setItem('sautifarm_active_tab', activeTab);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 font-sans selection:bg-saf-200">
@@ -123,7 +127,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer currentLanguage={currentLanguage} />
+      <Footer currentLanguage={currentLanguage} setActiveTab={setActiveTab} />
 
       {selectedProduct && (
         <ProductModal
